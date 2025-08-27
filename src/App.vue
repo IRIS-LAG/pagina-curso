@@ -1,15 +1,17 @@
 <script setup lang="ts">
 
-import HeaderComp from './components/HeaderComp.vue'
-import FooterComp from './components/FooterComp.vue'
-import SearchComp from './components/SearchComp.vue'
-import CuerpoComp from './components/CuerpoComp.vue'
+import HeaderComp from './components/IndHeader.vue'
+import FooterComp from './components/IndFooter.vue'
+import SearchComp from './components/IndSearch.vue'
+import CuerpoComp from './components/IndCuerpo.vue'
+import Vitrina from './components/IndVitrina.vue'
 
 </script>
 
 <template>
   <div class="app-container">
     <HeaderComp></HeaderComp>
+    <Vitrina></Vitrina>
 
     <div class="main-content">
       <SearchComp></SearchComp>

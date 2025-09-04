@@ -27,8 +27,8 @@ const especializs = computed(() => {
         subespecializSel.value = 'Todos'
         return [{ nombre: 'Todos' }]
     }
-    const materia = materias.value.find(m => m.nombre === materiaSel.value)
     /*
+    const materia = materias.value.find(m => m.nombre === materiaSel.value)
     return materia?.especializ ?? [{ nombre: 'Todos' }]
     */
 })

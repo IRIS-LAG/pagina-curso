@@ -28,8 +28,11 @@ const especializs = computed(() => {
         return [{ nombre: 'Todos' }]
     }
     const materia = materias.value.find(m => m.nombre === materiaSel.value)
+    /*
     return materia?.especializ ?? [{ nombre: 'Todos' }]
+    */
 })
+/*
 const subespecializs = computed(() => {
     if (especializSel.value === 'Todos') 
     {
@@ -39,7 +42,7 @@ const subespecializs = computed(() => {
     const espec = especializs.value.find(e => e.nombre === especializSel.value)
     return espec?.subespecializ ?? [{ nombre: 'Todos' }]
 })
-
+*/
 
 /*funcion de seleccionar item y desmarcar los otros del mismo grupo*/
     function selectItem(event: Event) {

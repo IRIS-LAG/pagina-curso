@@ -53,11 +53,11 @@
         gap: 20px;
     }
     img {
+        /*blanco*/
         filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(37deg) brightness(103%) contrast(102%); 
     }
     img:hover {
-        filter: brightness(0) saturate(100%) invert(50%) sepia(41%) saturate(985%) hue-rotate(349deg) brightness(93%) contrast(85%);
-        /*del naranja saque el filter*/
+        filter: var(--color7);
     }
     .svg-imagen:hover {
         width: 40px;
@@ -115,6 +115,8 @@
     }
     button:hover {
         background-color: var(--color6);
+        color: black;
+        font-weight: bold;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 
     }

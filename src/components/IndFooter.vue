@@ -38,9 +38,7 @@
         filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(37deg) brightness(103%) contrast(102%);   
     }
     img:hover {
-        filter: brightness(0) saturate(100%) invert(50%) sepia(41%) saturate(985%) hue-rotate(349deg) brightness(93%) contrast(85%);
-        /*del naranja saque el filter*/
-        
+        filter: var(--color7);
         width: 60px;
         height: 60px;
         cursor: pointer;

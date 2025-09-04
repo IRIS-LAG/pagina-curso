@@ -51,34 +51,32 @@ const videos = ref(videoUrls);
         scrollbar-width: thin; /* Oculta la barra en Firefox */
         scrollbar-color: var(--color2) transparent; /* Oculta la barra en Firefox */
     }
-
-.vitrina-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex: 0 0 auto; /* Evita que los elementos se estiren */
-    width: 90px;
-    height: 120px;
-    text-align: center;
-    background-color: var(--color2);
-    border-radius: 6px;
-}
-.vitrina-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
-    margin-top: -5px;
-}
-.vitrina-item video {
-    width: 100%; /* Asegura que el video ocupe todo el ancho disponible */
-    height: 80%;
-    object-fit: fill;
-    border-radius: 6px; /* Opcional: bordes redondeados */
-}
-.vitrina-item p {
-    flex: 0 0 20%; /* El texto ocupa el 20% del espacio vertical */
-    margin: 0;
-    padding-top: 5px;    
-    font-size: 12px; /* Ajusta el tamaño del texto */
-    /*color: white; /* Cambia el color del texto */
-}
+    .vitrina-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex: 0 0 auto; /* Evita que los elementos se estiren */
+        width: 90px;
+        height: 120px;
+        text-align: center;
+        background-color: var(--color2);
+        border-radius: 6px;
+    }
+    .vitrina-item:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+        margin-top: -5px;
+    }
+    .vitrina-item video {
+        width: 100%; /* Asegura que el video ocupe todo el ancho disponible */
+        height: 80%;
+        object-fit: fill;
+        border-radius: 6px; /* Opcional: bordes redondeados */
+    }
+    .vitrina-item p {
+        flex: 0 0 20%; /* El texto ocupa el 20% del espacio vertical */
+        margin: 0;
+        padding-top: 5px;    
+        font-size: 12px; /* Ajusta el tamaño del texto */
+   }
 </style>

@@ -1,24 +1,24 @@
 <script setup lang="ts">
 
-import HeaderComp from './components/IndHeader.vue'
-import FooterComp from './components/IndFooter.vue'
-import SearchComp from './components/IndSearch.vue'
-import CuerpoComp from './components/IndCuerpo.vue'
-import Vitrina from './components/IndVitrina.vue'
+import IndHeader from './components/IndHeader.vue'
+import IndFooter from './components/IndFooter.vue'
+import IndSearch from './components/IndSearch.vue'
+import IndCuerpo from './components/IndCuerpo.vue'
+import IndVitrina from './components/IndVitrina.vue'
 
 </script>
 
 <template>
   <div class="app-container">
-    <HeaderComp></HeaderComp>
-    <Vitrina></Vitrina>
+    <IndHeader></IndHeader>
+    <IndVitrina></IndVitrina>
 
     <div class="main-content">
-      <SearchComp></SearchComp>
-      <CuerpoComp></CuerpoComp>
+      <IndSearch></IndSearch>
+      <IndCuerpo></IndCuerpo>
     </div>
 
-    <FooterComp></FooterComp>
+    <IndFooter></IndFooter>
   </div>
 </template>
 
@@ -30,7 +30,8 @@ import Vitrina from './components/IndVitrina.vue'
   }
   .main-content {
     display: flex;
-    justify-content: space-between;
     flex: 1;
+    margin: 0px;
+    padding: 0px;
   }
 </style>

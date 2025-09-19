@@ -1,4 +1,33 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+import NuevoUsu from './NuevoUsu.vue';
+import UserProfile from './UserProfile.vue';
+
+interface User {
+    name: string;
+    avatarUrl: string;
+}
+const user: User = {
+    name: 'Juan Pérez',
+    avatarUrl: 'https://i.pravatar.cc/150?img=3' // URL de una imagen de avatar de ejemplo
+};
+const currentUser = ref<User | null>(user); // Simulamos que el usuario está logueado
+
+
+
+
+const showModal = ref(false);
+const openModal = () => {showModal.value = true;};  
+const closeModal = () => {showModal.value = false;};      
+const handleUserSubmit = (payload: { username: string; email: string; password: string }) => {
+    console.log('Nuevo usuario registrado:', payload);
+
+    // Aquí iría la lógica para manejar el nuevo usuario, como llamar a una API.
+    
+    closeModal(); // Cerramos el modal tras el registro.
+};
+
+</script>
 
 <template>
     <header class="header">
@@ -30,12 +59,15 @@
 
         <!-- Botones de sesión ---------------------------------------->
         <div class="sesibuttons">
-            <button>Registrarse</button>
-            <button>Iniciar sesión</button>
+            <button @click="openModal">Registrarse</button>
+            <!-- <button>Iniciar sesión</button> -->
         </div>
         </div>
-
     </header>
+
+    <NuevoUsu :show="showModal" @close="closeModal" @submit="handleUserSubmit" />
+
+
 </template>
 
 <style scoped>

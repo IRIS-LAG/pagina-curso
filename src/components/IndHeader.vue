@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import NuevoUsu from './NuevoUsu.vue';
-import UserProfile from './UserProfile.vue';
+//import UserProfile from './UserProfile.vue';
 
 interface User {
     name: string;
@@ -11,7 +11,7 @@ const user: User = {
     name: 'Juan Pérez',
     avatarUrl: 'https://i.pravatar.cc/150?img=3' // URL de una imagen de avatar de ejemplo
 };
-const currentUser = ref<User | null>(user); // Simulamos que el usuario está logueado
+//const currentUser = ref<User | null>(user); // Simulamos que el usuario está logueado
 
 
 
@@ -29,6 +29,8 @@ const handleUserSubmit = (payload: { username: string; email: string; password: 
 
 </script>
 
+//***********************************************************************************/
+//***********************************************************************************/
 <template>
     <header class="header">
         <!-- Logo ----------------------------------------------------->
@@ -67,7 +69,7 @@ const handleUserSubmit = (payload: { username: string; email: string; password: 
 
     <NuevoUsu :show="showModal" @close="closeModal" @submit="handleUserSubmit" />
 
-
+//***********************************************************************************/
 </template>
 
 <style scoped>

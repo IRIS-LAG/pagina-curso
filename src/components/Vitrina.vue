@@ -1,34 +1,42 @@
-
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue'
+import videosVit from '../data/videosVitrina.json'
 
-const videoUrls = [
-    "https://www.w3schools.com/html/mov_bbb.mp4",
-    "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
-    "https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
-    "https://samplelib.com/lib/preview/mp4/sample-15s.mp4",
-    "https://samplelib.com/lib/preview/mp4/sample-20s.mp4",
-    "https://samplelib.com/lib/preview/mp4/sample-30s.mp4",
-    
-    "https://www.w3schools.com/html/mov_bbb.mp4",
-    "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
-    "https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
-    "https://samplelib.com/lib/preview/mp4/sample-15s.mp4",
-    "https://samplelib.com/lib/preview/mp4/sample-20s.mp4",
-];
-
-const videos = ref(videoUrls);
-
+interface Video {
+    index: number;
+    urlv: string;
+}   
+const videos = ref<Video[]>([])
+onMounted(() => {
+    videos.value = videosVit.videitos
+})    
+// Función para reproducir el video al enfocar
+function playVideo(event: FocusEvent) {
+    const video = (event.target as HTMLElement).querySelector('video') as HTMLVideoElement
+    if (video) {
+        video.play()
+    }
+}
+// Función para pausar el video al perder el foco
+function pauseVideo(event: FocusEvent) {
+    const video = (event.target as HTMLElement).querySelector('video') as HTMLVideoElement
+    if (video) {
+        video.pause()
+    }
+}
 </script>
 
 <template>
-    <!-- Carrusel de videos cortos -->
     <div class="contenedor">
     <section class="vitrina">
-        <div class="vitrina-item" v-for="(video, index) in videos" :key="index">
-            <!--<video src="" width="120" height="80" muted />-->
-            <video :src="video" width="80"  muted autoplay loop></video>
-            <p>Video {{ index + 1 }}</p>
+        <div class="vitrina-item" 
+            v-for="video in videos" :key="video.index"
+            tabindex="0" 
+            @mouseenter="playVideo($event)"
+            @mouseleave="pauseVideo($event)"
+            >
+            <video :src="video.urlv" width="80" muted></video>
+            <p>Video__{{ video.index + 1 }}</p>
         </div>
     </section>
     </div>
@@ -47,6 +55,7 @@ const videos = ref(videoUrls);
         justify-content: center;
         gap: 25px;
         overflow-y: auto;
+        max-width: 100%;
         scroll-behavior: smooth; /* Hace que el desplazamiento sea suave */    
         scrollbar-width: thin; /* Oculta la barra en Firefox */
         scrollbar-color: var(--color2) transparent; /* Oculta la barra en Firefox */
@@ -78,5 +87,5 @@ const videos = ref(videoUrls);
         margin: 0;
         padding-top: 5px;    
         font-size: 12px; /* Ajusta el tamaño del texto */
-   }
+    }
 </style>

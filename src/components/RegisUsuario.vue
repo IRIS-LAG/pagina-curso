@@ -5,6 +5,7 @@ import { ref } from 'vue';
 // El componente no se muestra por sí mismo, el padre lo decide con la prop 'show'.
 defineProps<{
     show: boolean;
+    
 }>();
 
 // El componente notifica al padre cuando debe cerrarse o cuando el formulario se envía.
@@ -38,41 +39,47 @@ const handleSubmit = () => {
 </script>
 
 <template>
-    <Transition name="modal-fade">
-        <div v-if="show" class="modal-overlay" @click.self="emit('close')">
-            <div class="modal-container">
-                <header class="modal-header">
-                    <h3>Crear una Nueva Cuenta</h3>
-                    <button class="close-button" @click="emit('close')">&times;</button>
-                </header>
+  <Transition name="modal-fade">
+    <div v-if="show" class="modal-overlay" @click.self="emit('close')">
+      <div class="modal-container">
 
-                <main class="modal-body">
-                    <form @submit.prevent="handleSubmit">
-                        <div class="form-group">
-                            <label for="username">Nombre de Usuario</label>
-                            <input type="text" id="username" v-model="username" placeholder="ej: juanperez" required />
-                        </div>
+        <header class="modal-header">
+          <h3>Registro de Usuario</h3>
+          <button class="close-button" @click="emit('close')">&times;</button>
+        </header>
 
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico</label>
-                            <input type="email" id="email" v-model="email" placeholder="tu@correo.com" required />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input type="password" id="password" v-model="password" placeholder="Mínimo 8 caracteres" required />
-                        </div>
-            
-                        <button type="submit" class="submit-button">Registrarse</button>
-                    </form>
-                </main>
-                
-                <footer class="modal-footer">
-                    <p>¿Ya tienes una cuenta? <a href="#">Ingresa aquí</a></p>
-                </footer>
+        <main class="modal-body">
+          <form @submit.prevent="handleSubmit">
+          
+            <div class="form-group">
+              <label for="username">Nombre de Usuario</label>
+              <input type="text" id="username" v-model="username" placeholder="ej: juanperez" required />
             </div>
-        </div>
-    </Transition>
+
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input type="email" id="email" v-model="email" placeholder="tu@correo.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <input type="password" id="password" v-model="password" placeholder="Mínimo 8 caracteres" required />
+            </div>
+            
+            <button type="submit" class="submit-button">Regístrate</button>
+            <br/>
+          
+          </form>
+        </main>
+                
+        <footer class="modal-footer">
+          <p>Al hacer click, aceptas los términos de uso.</p>  
+          <p>¿Ya tienes una cuenta? <a href="#">Ingresa aquí</a></p>
+        </footer>
+
+      </div>
+    </div>
+  </Transition>
 </template>
 
 <style scoped>
@@ -83,95 +90,97 @@ const handleSubmit = () => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(36, 35, 35, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
-
 .modal-container {
-  background-color: white;
+  background-color: var(--color3);
   border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
   width: 90%;
-  max-width: 450px;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
 }
-
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 4px solid white;
 }
-
 .modal-header h3 {
   margin: 0;
-  font-size: 1.25rem;
-  color: #1a202c;
+  font-size: 1.6rem;
+  color: white;
+  width: 100%;
+  text-align: center;
 }
-
 .close-button {
   border: none;
   background: none;
-  font-size: 2rem;
+  font-size: 3.4rem;
   font-weight: 300;
   cursor: pointer;
-  color: #718096;
+  color: #34383f;
+  height: 40px;
+  margin-top: -35px;
+  transition: color 0.2s;
 }
-
+.close-button:hover {
+  color: var(--color6);
+}
 .modal-body {
   padding: 1.5rem;
 }
-
 .form-group {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 1rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #4a5568;
+  font-size: 1.3rem;
+  color: black
 }
-
 .form-group input {
-  width: 100%;
+  /*width: 100%;*/
   padding: 0.75rem;
-  border: 1px solid #cbd5e0;
+  margin-top: 0.65rem;
+  border: 1px solid var(--color2);
+  outline: none;
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
-
-.submit-button {
+.form-group input:focus {
+  background-color: var(--color6-rgb);
+}
+  .submit-button {
   width: 100%;
   padding: 0.8rem;
   border: none;
   border-radius: 6px;
-  background-color: #4299e1;
+  background-color: var(--color2);
   color: white;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .submit-button:hover {
-  background-color: #3182ce;
+  background-color: var(--color6);
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+  font-weight: bold;
 }
-
 .modal-footer {
-  background-color: #f7fafc;
-  padding: 1rem 1.5rem;
+  background-color: var(--color4);
   text-align: center;
-  border-top: 1px solid #e2e8f0;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-
+/*
 .modal-footer p {
   margin: 0;
   color: #4a5568;
@@ -183,7 +192,7 @@ const handleSubmit = () => {
   font-weight: 600;
 }
 
-/* Estilos para la transición */
+/* Estilos para la transición 
 .modal-fade-enter-active,
 .modal-fade-leave-active {
   transition: opacity 0.3s ease;
@@ -192,4 +201,5 @@ const handleSubmit = () => {
 .modal-fade-leave-to {
   opacity: 0;
 }
+*/
 </style>

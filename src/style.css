@@ -12,6 +12,7 @@
   --color4: #c4dfe6; 
   --color5: #cdd2d3;
   --color6: #f09540;
+  --color6-rgb: rgba(240, 149, 64, 0.95);
   /*--color7: filter del color 6*/
   --color7: brightness(0) saturate(100%) invert(82%) sepia(65%) saturate(4606%) hue-rotate(332deg) brightness(100%) contrast(89%);
 

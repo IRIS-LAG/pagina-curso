@@ -15,16 +15,15 @@ import FooterP from './components/FooterP.vue'
         <nav>
           <RouterLink to="/">Inicio</RouterLink>
           <RouterLink to="/about">Acerca de</RouterLink>
+          <RouterLink to="/formulario">Formulario</RouterLink>
         </nav>
       </div>
     </header>
 
     <HeaderP />
-
     <div class="main-content">
       <RouterView />
     </div>
-
     <FooterP />
   </div>
 
@@ -43,9 +42,6 @@ import FooterP from './components/FooterP.vue'
     margin: 0px;
     padding: 0px;
   }
-
-
-
 
 /* Estilos básicos para la navegación */
 header {

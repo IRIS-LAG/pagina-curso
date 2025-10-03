@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import UserProfile from './UserProfile.vue';
+import UnUsuario from './RegisUsuario.vue';
 import { ref } from 'vue';
 
-//import NuevoUsu from './NuevoUsu.vue';
-//import UserProfile from './UserProfile.vue';
-/*
 interface User {
     name: string;
     avatarUrl: string;
 }
-const user: User = {
+const usuario: User = {
     name: 'Juan Pérez',
-    avatarUrl: 'https://i.pravatar.cc/150?img=3' // URL de una imagen de avatar de ejemplo
-};
-//const currentUser = ref<User | null>(user); // Simulamos que el usuario está logueado
-*/
+    avatarUrl: 'https://i.pravatar.cc/150?u=anagarcia',
+}
 
-/*
+//const currentUser = ref<User | null>(user); // Simulamos que el usuario está logueado
+
 const showModal = ref(false);
 const openModal = () => {showModal.value = true;};  
 const closeModal = () => {showModal.value = false;};      
@@ -27,7 +24,11 @@ const handleUserSubmit = (payload: { username: string; email: string; password: 
     
     closeModal(); // Cerramos el modal tras el registro.
 };
-*/
+
+const existeUsuario = ref(false);
+const habilitarUsuario = () => {
+    existeUsuario.value = true;
+};
 
 /******************************************************************************************/
 /******************************************************************************************/
@@ -65,17 +66,17 @@ const handleUserSubmit = (payload: { username: string; email: string; password: 
                 <button @click="openModal">Registrarse</button>
             </div>
 
-            <div class="usuarioAct"><!-- Usuario activo -------------------------->
+            <div class="usuarioAct" v-if = "existeUsuario">
                 <UserProfile 
-                    username="Ana García" 
-                    avatarUrl="https://i.pravatar.cc/150?u=anagarcia" 
+                    :username = usuario.name
+                    :avatarUrl = usuario.avatarUrl
                 />
             </div>
         </div>
     </header>
-    <!--
-    <NuevoUsu :show="showModal" @close="closeModal" @submit="handleUserSubmit" />
-    -->
+    
+    <UnUsuario :show="showModal" @close="closeModal" @submit="handleUserSubmit" />
+    
     <!-- ********************************************************************************************* -->
     <!-- ********************************************************************************************* -->
 </template>
@@ -181,5 +182,8 @@ const handleUserSubmit = (payload: { username: string; email: string; password: 
         color: black;
         font-weight: bold;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    }
+    .ocultar {
+        display: none;
     }
 </style>

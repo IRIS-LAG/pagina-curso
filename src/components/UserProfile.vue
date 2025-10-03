@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { onClickOutside } from '@vueuse/core'
 
 interface Props {
   username: string;
@@ -25,14 +26,15 @@ function toggleDropdown() {
   isDropdownOpen.value = !isDropdownOpen.value
 }
 
-// Podrías añadir lógica aquí para cerrar el menú si se hace clic fuera.
-// Por ahora, lo mantenemos simple.
-
-
+// lógica para cerrar el menú si se hace clic fuera.
+const userProfileComponent = ref(null)
+onClickOutside(userProfileComponent, () => {
+  isDropdownOpen.value = false
+})
 </script>
 
 <template>
-  <div class="user-profile" @click="toggleDropdown">
+  <div class="user-profile" @click="toggleDropdown" ref="userProfileComponent">
     
     <div class="avatar-container">
       <img class="avatar-image"    v-if="avatarUrl" :src="avatarUrl" :alt="'Avatar de ' + username">
@@ -63,7 +65,7 @@ function toggleDropdown() {
         <ul>
           <li><a href="/mis datos">Mi Perfil</a></li>
           <li class="separator"></li>
-          <li><a href="/salir">Cerrar Sesión</a></li>
+          <RouterLink to="/" class="drop-link">Cerrar Sesión</RouterLink>
         </ul>
       </div>
     </Transition>
@@ -123,41 +125,38 @@ function toggleDropdown() {
 /* Menú desplegable */
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 100px); 
-  right: 0;
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
+  /*top: calc(100% + 100px); */
+  top: 120px;
+  right: 30px;
+  background-color: var(--color3);
+  border: 1px solid var(--color1);
   border-radius: 12px;
   width: 180px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
   z-index: 1000;
   overflow: hidden;
 }
-
 .dropdown-menu ul {
   list-style: none;
   margin: 0;
-  padding: 8px 0;
+  padding: 0;
 }
-
-.dropdown-menu li a {
+.dropdown-menu li a, .dropdown-menu .drop-link {
   display: block;
   padding: 10px 20px;
-  color: var(--color-text);
+  color: var(--color6);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-
-.dropdown-menu li a:hover {
-  background-color: #42b983;
+.dropdown-menu li a:hover, .dropdown-menu .drop-link:hover {
+  background-color: var(--color6);
   color: white;
 }
-
 .dropdown-menu .separator {
-  height: 1px;
-  background-color: var(--color-border);
-  margin: 8px 0;
+  height: 0.5px;
+  background-color: var(--color2);
+  margin: 0;
 }
 
 /* Transición para el menú */

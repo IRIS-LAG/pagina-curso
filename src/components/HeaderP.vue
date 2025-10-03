@@ -1,35 +1,46 @@
 <script setup lang="ts">
-import UserProfile from './UserProfile.vue';
-import UnUsuario from './RegisUsuario.vue';
-import { ref } from 'vue';
+import UserProfile from './UserProfile.vue'
+import UnUsuario from './RegisUsuario.vue'
+import { ref, onMounted } from 'vue'
 
+// ------------para manejo del usuario en el header
 interface User {
-    name: string;
-    avatarUrl: string;
+    name: string
+    avatarUrl: string
 }
-const usuario: User = {
-    name: 'Juan Pérez',
-    avatarUrl: 'https://i.pravatar.cc/150?u=anagarcia',
+const usuario = ref<User | null>(null)
+const existeUsuario = ref(false)
+const cargarUsuario = () => {
+    const userData = localStorage.getItem('usuario')
+    if (userData) {
+        usuario.value = JSON.parse(userData) // Restaura el usuario
+        existeUsuario.value = true
+    }
 }
-
-//const currentUser = ref<User | null>(user); // Simulamos que el usuario está logueado
-
-const showModal = ref(false);
-const openModal = () => {showModal.value = true;};  
-const closeModal = () => {showModal.value = false;};      
+const guardarUsuario = (user: User) => {
+    localStorage.setItem('usuario', JSON.stringify(user)) 
+}
+// ------------para toda la carga del modal de registro de usuario
+const showModal = ref(false)
+const openModal = () => {showModal.value = true;}
+const closeModal = () => {showModal.value = false;}
 const handleUserSubmit = (payload: { username: string; email: string; password: string }) => {
-    console.log('Nuevo usuario registrado:', payload);
-
+    //console.log('Nuevo usuario registrado:', payload) 
+    const nuevoUsuario: User = {
+        name: payload.username,
+        avatarUrl: 'https://i.pravatar.cc/150?u=anagarcia' 
+    }
+    usuario.value = nuevoUsuario
+    guardarUsuario(nuevoUsuario) //en memoria
+    existeUsuario.value = true
+    closeModal()   
+    
     // Aquí iría la lógica para manejar el nuevo usuario, como llamar a una API.
     
-    closeModal(); // Cerramos el modal tras el registro.
-};
-
-const existeUsuario = ref(false);
-const habilitarUsuario = () => {
-    existeUsuario.value = true;
-};
-
+}
+onMounted(() => {
+    cargarUsuario()
+})
 /******************************************************************************************/
 /******************************************************************************************/
 </script>
@@ -42,34 +53,28 @@ const habilitarUsuario = () => {
         </div>
         
         <div class="varios">
-            <div class="group"><!-- Buscador --------------------------------------->
+            <div class="group"><!-- Buscador ------------------------------------>
                 <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
                     <g>
                     <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
                     </g>
                 </svg>
-                <input
-                    id="query"
-                    class="input"
-                    type="search"
-                    placeholder="Buscar curso..."
-                    name="searchbar"
-                />
+                <input id="query" class="input" type="search" placeholder="Buscar curso..." name="searchbar"/>
             </div>
         
-            <div class="cart"><!-- Icono de compra --------------------------------->
+            <div class="cart"><!-- Icono de compra ------------------------------>
                 <img class="svg-imagen" src="../assets/iconos/carito.svg" alt="carrito" width="30" height="30"/>
                 <p class="numeroP">8</p>
             </div>
 
-            <div class="sesibutton"><!-- Boton de sesión -------------------------->
+            <div class="sesibutton" v-if = "!existeUsuario"><!-- Boton de sesión --->
                 <button @click="openModal">Registrarse</button>
             </div>
 
-            <div class="usuarioAct" v-if = "existeUsuario">
+            <div class="usuarioAct" v-if = "existeUsuario"><!-- icono/foto + nombreUsuario --->
                 <UserProfile 
-                    :username = usuario.name
-                    :avatarUrl = usuario.avatarUrl
+                    :username = "usuario?.name"
+                    :avatarUrl = "usuario?.avatarUrl"
                 />
             </div>
         </div>
@@ -118,7 +123,7 @@ const habilitarUsuario = () => {
         filter: var(--color7);
     }
 
-    /* Buscador --------------------------------------------------------------- */
+    /* Buscador ------------------------------------------------------------- */
     .group {
         display: flex;
         align-items: center;
@@ -152,7 +157,7 @@ const habilitarUsuario = () => {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
     }
         
-    /* icono carrito ----------------------------------------------------------- */
+    /* icono carrito -------------------------------------------------------- */
     .cart {
         display: flex;
         align-items: center;
@@ -166,7 +171,7 @@ const habilitarUsuario = () => {
         cursor: pointer;
     }
     
-    /* Boton --------------------------------------------------------------- */
+    /* Boton ---------------------------------------------------------------- */
     button {
         font-size: 1.2rem;
         background-color: var(--color3);

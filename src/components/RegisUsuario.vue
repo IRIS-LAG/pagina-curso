@@ -110,6 +110,7 @@ const handleSubmit = () => {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
+  margin-top: 10px;
   border-bottom: 4px solid white;
 }
 .modal-header h3 {

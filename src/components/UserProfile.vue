@@ -3,10 +3,10 @@ import { ref, computed } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
 interface Props {
-  username: string;
+  username?: string;
   avatarUrl?: string;
+  existeUsuario?: { value: boolean  }; 
 }
-
 const props = withDefaults(defineProps<Props>(), {
   avatarUrl: '', // Valor por defecto si no se proporciona
 })
@@ -31,6 +31,14 @@ const userProfileComponent = ref(null)
 onClickOutside(userProfileComponent, () => {
   isDropdownOpen.value = false
 })
+const cerrarSesion = () => {
+    localStorage.removeItem('usuario')
+    props.existeUsuario!.value = false
+    //props.username = null
+    //props.existeUsuario.value = false
+};
+/******************************************************************************************/
+/******************************************************************************************/
 </script>
 
 <template>
@@ -45,16 +53,9 @@ onClickOutside(userProfileComponent, () => {
 
     <span class="username">{{ username }}</span>
 
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      width="20" 
-      height="20" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      stroke-width="2" 
-      stroke-linecap="round" 
-      stroke-linejoin="round"
+    <svg @click="cerrarSesion"
+      xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
       class="chevron-icon" 
       :class="{ 'rotated': isDropdownOpen }">
         <polyline points="6 9 12 15 18 9"></polyline>

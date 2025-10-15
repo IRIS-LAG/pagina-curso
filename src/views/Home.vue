@@ -1,12 +1,7 @@
 <script setup lang="ts">
-
-/*
+import VitrinaV from '../components/Vitrina.vue'
 import IndSearch from '../components/IndSearch.vue'
 import IndCuerpo from '../components/IndCuerpo.vue'
-
-*/
-import VitrinaV from '../components/Vitrina.vue'
-
 </script>
 
 <template>
@@ -14,14 +9,12 @@ import VitrinaV from '../components/Vitrina.vue'
 
     <VitrinaV />
 
-    <!--
     <div class="main-content">
-      <IndSearch></IndSearch>
-      <IndCuerpo></IndCuerpo>
+      <IndSearch />
+      <IndCuerpo />
     </div>
-  -->
 
-  </div>
+</div>
 </template>
 
 <style> 
@@ -34,12 +27,11 @@ import VitrinaV from '../components/Vitrina.vue'
     flex-direction: column;
     
   }
-  /*
   .main-content {
     display: flex;
     flex: 1;
     margin: 0px;
     padding: 0px;
   }
-    */
+    
 </style>

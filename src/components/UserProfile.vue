@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { onClickOutside } from '@vueuse/core'
-
+// -------------------------recibe del padre
 interface Props {
-  username?: string;
-  avatarUrl?: string;
-  existeUsuario?: { value: boolean  }; 
+  username?: string
+  avatarUrl?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   avatarUrl: '', // Valor por defecto si no se proporciona
 })
+// -------------------------envia al padre
+const emit = defineEmits<{
+    (e: 'cerrar'): void
+}>();
+const CerrarSesion = () => {
+  emit('cerrar')
+};
 
 const isDropdownOpen = ref(false)
 
@@ -31,12 +37,6 @@ const userProfileComponent = ref(null)
 onClickOutside(userProfileComponent, () => {
   isDropdownOpen.value = false
 })
-const cerrarSesion = () => {
-    localStorage.removeItem('usuario')
-    props.existeUsuario!.value = false
-    //props.username = null
-    //props.existeUsuario.value = false
-};
 /******************************************************************************************/
 /******************************************************************************************/
 </script>
@@ -53,7 +53,7 @@ const cerrarSesion = () => {
 
     <span class="username">{{ username }}</span>
 
-    <svg @click="cerrarSesion"
+    <svg 
       xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" 
       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
       class="chevron-icon" 
@@ -66,7 +66,7 @@ const cerrarSesion = () => {
         <ul>
           <li><a href="/mis datos">Mi Perfil</a></li>
           <li class="separator"></li>
-          <RouterLink to="/" class="drop-link">Cerrar Sesión</RouterLink>
+          <RouterLink to="/" class="drop-link" @click="CerrarSesion">Cerrar Sesión</RouterLink>
         </ul>
       </div>
     </Transition>

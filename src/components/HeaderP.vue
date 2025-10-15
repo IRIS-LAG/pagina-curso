@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import UserProfile from './UserProfile.vue'
-import UnUsuario from './RegisUsuario.vue'
+import RegUsuario from './RegisUsuario.vue'
 import { ref, onMounted } from 'vue'
 
 // ------------para manejo del usuario en el header
 interface User {
+    email?: string
     name: string
     avatarUrl: string
 }
@@ -20,13 +21,19 @@ const cargarUsuario = () => {
 const guardarUsuario = (user: User) => {
     localStorage.setItem('usuario', JSON.stringify(user)) 
 }
+const cerrarSesion = () => {
+    console.log('Cerrando sesión...')
+    localStorage.removeItem('usuario')
+    usuario.value = null
+    existeUsuario.value = false 
+}
 // ------------para toda la carga del modal de registro de usuario
 const showModal = ref(false)
 const openModal = () => {showModal.value = true;}
 const closeModal = () => {showModal.value = false;}
-const handleUserSubmit = (payload: { username: string; email: string; password: string }) => {
-    //console.log('Nuevo usuario registrado:', payload) 
+const handleUserSubmit = (payload: { email: string; username: string;  password: string }) => {
     const nuevoUsuario: User = {
+        email: payload.email,
         name: payload.username,
         avatarUrl: 'https://i.pravatar.cc/150?u=anagarcia' 
     }
@@ -38,6 +45,7 @@ const handleUserSubmit = (payload: { username: string; email: string; password: 
     // Aquí iría la lógica para manejar el nuevo usuario, como llamar a una API.
     
 }
+// ------------cargar usuario al iniciar la app
 onMounted(() => {
     cargarUsuario()
 })
@@ -49,7 +57,7 @@ onMounted(() => {
     <header class="header">
         <div class="logo"><!-- Logo --------------------------------------------->
             <img src="../assets/iconos/logo0.svg" alt="Logo" width="70" height="70"/>
-            <p class="nombreP">LosC4rS0s</p>
+            <p class="nombreP">Aprende+</p>
         </div>
         
         <div class="varios">
@@ -64,23 +72,24 @@ onMounted(() => {
         
             <div class="cart"><!-- Icono de compra ------------------------------>
                 <img class="svg-imagen" src="../assets/iconos/carito.svg" alt="carrito" width="30" height="30"/>
-                <p class="numeroP">8</p>
+                <p class="numeroP">0</p>
             </div>
 
             <div class="sesibutton" v-if = "!existeUsuario"><!-- Boton de sesión --->
-                <button @click="openModal">Registrarse</button>
+                <button class="btn" @click="openModal">Registrarse</button>
             </div>
 
             <div class="usuarioAct" v-if = "existeUsuario"><!-- icono/foto + nombreUsuario --->
                 <UserProfile 
                     :username = "usuario?.name"
                     :avatarUrl = "usuario?.avatarUrl"
+                    @cerrar = "cerrarSesion"
                 />
             </div>
         </div>
     </header>
     
-    <UnUsuario :show="showModal" @close="closeModal" @submit="handleUserSubmit" />
+    <RegUsuario :show="showModal" @close="closeModal" @submit="handleUserSubmit" />
     
     <!-- ********************************************************************************************* -->
     <!-- ********************************************************************************************* -->
@@ -170,24 +179,7 @@ onMounted(() => {
         height: 40px;
         cursor: pointer;
     }
-    
     /* Boton ---------------------------------------------------------------- */
-    button {
-        font-size: 1.2rem;
-        background-color: var(--color3);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    button:hover {
-        background-color: var(--color6);
-        color: black;
-        font-weight: bold;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
-    }
     .ocultar {
         display: none;
     }

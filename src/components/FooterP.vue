@@ -3,7 +3,7 @@
 <template>
     <footer class="piePagina">
         <div class="pieizquierda">
-            <h2>Los Cursos</h2>
+            <h2>Aprende +</h2>
         </div>
     
         <div class="piecentro">Santa Cruz - Bolivia <br> © Copyright 2025</div>    

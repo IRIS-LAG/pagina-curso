@@ -1,360 +1,57 @@
 {
     "areas": [
-    {
-        "id": 0,
-        "nombre": "Todos",
-        "materias": []
-    },
-    {
-        "id": 1,
-        "nombre": "Educación",
-        "materias": [
-        {
-            "id": 0,
-            "nombre": "Todos",
-            "especializ": []
-        },
-        {
-            "id": 1,
-            "nombre": "Matemáticas",
-            "especializ": [
-            {
-                "id": 0,
-                "nombre": "Todos",
-                "subespecializ": []
-            },
-            {
-                "id": 1,
-                "nombre": "Álgebra",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Álgebra lineal" },
-                { "id": 2, "nombre": "Álgebra abstracta" },
-                { "id": 3, "nombre": "Álgebra computacional" }
-                ]
-            },
-            {
-                "id": 2,
-                "nombre": "Geometría",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Geometría plana" },
-                { "id": 2, "nombre": "Geometría analítica" },
-                { "id": 3, "nombre": "Geometría diferencial" }
-                ]
-            },
-            {
-                "id": 3,
-                "nombre": "Estadística",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Probabilidad" },
-                { "id": 2, "nombre": "Estadística descriptiva" },
-                { "id": 3, "nombre": "Inferencia estadística" }
-                ]
-            }
-            ]
-        },
-        {
-            "id": 2,
-            "nombre": "Lenguaje",
-            "especializ": [
-            {
-                "id": 0,
-                "nombre": "Todos",
-                "subespecializ": []
-            },
-            {
-                "id": 1,
-                "nombre": "Gramática",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Sintaxis" },
-                { "id": 2, "nombre": "Morfología" },
-                { "id": 3, "nombre": "Semántica" }
-                ]
-            },
-            {
-                "id": 2,
-                "nombre": "Literatura",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Narrativa" },
-                { "id": 2, "nombre": "Poesía" },
-                { "id": 3, "nombre": "Ensayo" }
-                ]
-            },
-            {
-                "id": 3,
-                "nombre": "Ortografía",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Reglas básicas" },
-                { "id": 2, "nombre": "Uso de tildes" },
-                { "id": 3, "nombre": "Puntuación" }
-                ]
-            }
-            ]
-        },
-        {
-            "id": 3,
-            "nombre": "Historia",
-            "especializ": [
-            {
-                "id": 0,
-                "nombre": "Todos",
-                "subespecializ": []
-            },    
-            {
-                "id": 1,
-                "nombre": "Historia universal",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Edad Antigua" },
-                { "id": 2, "nombre": "Edad Media" },
-                { "id": 3, "nombre": "Edad Moderna" }
-                ]
-            },
-            {
-                "id": 2,
-                "nombre": "Historia de América",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Culturas precolombinas" },
-                { "id": 2, "nombre": "Conquista" },
-                { "id": 3, "nombre": "Independencias" }
-                ]
-            },
-            {
-                "id": 3,
-                "nombre": "Historia de Bolivia",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Época colonial" },
-                { "id": 2, "nombre": "República" },
-                { "id": 3, "nombre": "Siglo XXI" }
-                ]
-            }
-            ]
-        }
-        ]
-    },
-    {
-        "id": 2,
-        "nombre": "Tecnología",
-        "materias": [
-        {
-            "id": 0,
-            "nombre": "Todos",
-            "especializ": []
-        },
-        {
-            "id": 1,
-            "nombre": "Programación",
-            "especializ": [
-            {
-                "id": 0,
-                "nombre": "Todos",
-                "subespecializ": [] 
-            },
-            {
-                "id": 1,
-                "nombre": "Frontend",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Vue.js" },
-                { "id": 2, "nombre": "React" },
-                { "id": 3, "nombre": "Angular" }
-                ]
-            },
-            {
-                "id": 2,
-                "nombre": "Backend",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Node.js" },
-                { "id": 2, "nombre": "Python" },
-                { "id": 3, "nombre": "PHP" }
-                ]
-            },
-            {
-                "id": 3,
-                "nombre": "Bases de datos",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "MySQL" },
-                { "id": 2, "nombre": "MongoDB" },
-                { "id": 3, "nombre": "PostgreSQL" }
-                ]
-            }
-            ]
-        },
-        {
-            "id": 2,
-            "nombre": "Diseño",
-            "especializ": [
-            {
-                "id": 0,
-                "nombre": "Todos",
-                "subespecializ": []
-            },
-            {
-                "id": 1,
-                "nombre": "Diseño gráfico",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Photoshop" },
-                { "id": 2, "nombre": "Illustrator" },
-                { "id": 3, "nombre": "Figma" }
-                ]
-            },
-            {
-                "id": 2,
-                "nombre": "UX/UI",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Wireframes" },
-                { "id": 2, "nombre": "Prototipos" },
-                { "id": 3, "nombre": "Pruebas de usuario" }
-                ]
-            },
-            {
-                "id": 3,
-                "nombre": "Diseño web",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "HTML/CSS" },
-                { "id": 2, "nombre": "Responsive Design" },
-                { "id": 3, "nombre": "Accesibilidad" }
-                ]
-            }
-            ]
-        },
-        {
-            "id": 3,
-            "nombre": "Inteligencia Artificial",
-            "especializ": [
-            {   
-                "id": 0,
-                "nombre": "Todos",
-                "subespecializ": []
-            },
-            {
-                "id": 1,
-                "nombre": "Machine Learning",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Modelos supervisados" },
-                { "id": 2, "nombre": "Modelos no supervisados" },
-                { "id": 3, "nombre": "Redes neuronales" }
-                ]
-            },
-            {
-                "id": 2,
-                "nombre": "Procesamiento de lenguaje natural",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Tokenización" },
-                { "id": 2, "nombre": "Clasificación de texto" },
-                { "id": 3, "nombre": "Chatbots" }
-                ]
-            },
-            {
-                "id": 3,
-                "nombre": "Visión por computadora",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Reconocimiento de imágenes" },
-                { "id": 2, "nombre": "Detección de objetos" },
-                { "id": 3, "nombre": "Segmentación" }
-                ]
-            }
-            ]
-        }
-        ]
-    },
-    {
-        "id": 3,
-        "nombre": "Finanzas",
-        "materias": [
-        {
-            "id": 0,
-            "nombre": "Todos",  
-            "especializ": []
-        },
-        {
-            "id": 1,
-            "nombre": "Finanzas 1",
-            "especializ": [
-            {
-                "id": 0,
-                "nombre": "Todos",
-                "subespecializ": []
-            },
-            {
-                "id": 1,
-                "nombre": "Finanzas 1.1",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Finanzas 1.1.1" },
-                { "id": 2, "nombre": "Finanzas 1.1.2" },
-                { "id": 3, "nombre": "Finanzas 1.1.3" }
-                ]
-            },
-            {
-                "id": 2,
-                "nombre": "Finanzas 1.2",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Finanzas 1.2.1" },
-                { "id": 2, "nombre": "Finanzas 1.2.2" },
-                { "id": 3, "nombre": "Finanzas 1.2.3" }
-                ]
-            },
-            {
-                "id": 3,
-                "nombre": "Finanzas 1.3",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Finanzas 1.3.1" },
-                { "id": 2, "nombre": "Finanzas 1.3.2" },
-                { "id": 3, "nombre": "Finanzas 1.3.3" }
-                ]
-            }
-            ]
-        },
-        {
-            "id": 2,
-            "nombre": "Finanzas 2",
-            "especializ": [
-            {
-                "id": 0,
-                "nombre": "Todos",
-                "subespecializ": []
-            },
-            {
-                "id": 1,
-                "nombre": "Finanzas 2.1",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Finanzas 2.1.1" },
-                { "id": 2, "nombre": "Finanzas 2.1.2" },
-                { "id": 3, "nombre": "Finanzas 2.1.3" }
-                ]
-            },
-            {
-                "id": 2,
-                "nombre": "Finanzas 2.2",
-                "subespecializ": [
-                { "id": 0, "nombre": "Todos" },
-                { "id": 1, "nombre": "Finanzas 2.2.1" },
-                { "id": 2, "nombre": "Finanzas 2.2.2" },
-                { "id": 3, "nombre": "Finanzas 2.2.3" }
-                ]
-            }
-            ]
-        }
-        ]
-    }
+    {   "id": 1, "nombre": "Educación"},
+    {   "id": 2, "nombre": "Tecnología"},
+    {   "id": 3, "nombre": "Finanzas"}
+    ],
+    
+    "materias": [
+    {   "id": 1, "idmateria": 1, "nombre": "Matemáticas"},
+    {   "id": 1, "idmateria": 2, "nombre": "Lenguaje"},
+    {   "id": 1, "idmateria": 3, "nombre": "Historia"},
+    
+    {   "id": 2, "idmateria": 1, "nombre": "Programación"},
+    {   "id": 2, "idmateria": 2, "nombre": "Diseño"},
+    {   "id": 2, "idmateria": 3, "nombre": "Inteligencia Artificial"},
+
+    {   "id": 3, "idmateria": 1, "nombre": "Finanzas 1"},
+    {   "id": 3, "idmateria": 2, "nombre": "Finanzas 2"}
+    ],
+
+    "especializ": [
+    {   "id": 1, "idmateria": 1, "especializ": 1, "nombre": "Álgebra"},
+    {   "id": 1, "idmateria": 1, "especializ": 2, "nombre": "Geometría"},
+    {   "id": 1, "idmateria": 1, "especializ": 3, "nombre": "Estadística"},
+    
+    {   "id": 1, "idmateria": 2, "especializ": 1, "nombre": "Gramática"},
+    {   "id": 1, "idmateria": 2, "especializ": 2, "nombre": "Literatura"},
+    {   "id": 1, "idmateria": 2, "especializ": 3, "nombre": "Ortografía"},
+
+    {   "id": 1, "idmateria": 3, "especializ": 1, "nombre": "Historia universal"},
+    {   "id": 1, "idmateria": 3, "especializ": 2, "nombre": "Historia de América"},
+    {   "id": 1, "idmateria": 3, "especializ": 3, "nombre": "Historia de Bolivia"},
+
+    {   "id": 2, "idmateria": 1, "especializ": 1, "nombre": "Frontend"},
+    {   "id": 2, "idmateria": 1, "especializ": 2, "nombre": "Backend"},
+    {   "id": 2, "idmateria": 1, "especializ": 3, "nombre": "Bases de datos"},
+    
+    {   "id": 2, "idmateria": 2, "especializ": 1, "nombre": "Machine Learning"},
+    {   "id": 2, "idmateria": 2, "especializ": 2, "nombre": "Procesamiento de lenguaje natural"},
+    {   "id": 2, "idmateria": 2, "especializ": 3, "nombre": "Visión por computadora"},
+    
+    {   "id": 2, "idmateria": 3, "especializ": 1, "nombre": "Gemini"},
+    {   "id": 2, "idmateria": 3, "especializ": 2, "nombre": "chatgpt"},
+    
+    {   "id": 3, "idmateria": 1, "especializ": 1, "nombre": "Finanzas Grandes 1.1"},
+    {   "id": 3, "idmateria": 1, "especializ": 2, "nombre": "Finanzas Chicas 1.2"},
+
+    {   "id": 3, "idmateria": 2, "especializ": 1, "nombre": "Finanzas Grandes 222.1"},
+    {   "id": 3, "idmateria": 2, "especializ": 2, "nombre": "Finanzas Chicas 222.2"}
+    ],
+
+    "subEspecializ": [
+    {   "id": 1, "idmateria": 1, "especializ": 1, "subespecializ": 1, "nombre": "Álgebra lineal"},
+    {   "id": 1, "idmateria": 1, "especializ": 1, "subespecializ": 2, "nombre": "Álgebra abstracta"},
+    {   "id": 1, "idmateria": 1, "especializ": 1, "subespecializ": 3, "nombre": "Álgebra computacional"}
     ]
 }

@@ -20,6 +20,10 @@ const materias = computed(() => {
     const area = areas.value.find(a => a.nombre === areaSel.value)
     return area?.materias ?? [{ nombre: 'Todos' }]
 })
+
+
+
+
 const especializs = computed(() => {
     if (materiaSel.value === 'Todos') 
     {
@@ -59,14 +63,14 @@ const subespecializs = computed(() => {
         <div class="areas">
             <h3>Areas</h3>
             <ul>
-                <li class="item" v-for="area in areas" :key="area.nombre"
+                <li class="item" v-for="area in areas" :key="area.id"
                     @click="selectItem($event); areaSel = area.nombre">
                     {{ area.nombre }}
                 </li>
             </ul>
         </div>
 
-        <!-- Temas  ----------------------------------------------->
+        <!-- Materias  -------------------------------------------->
         <div class="materias">
             <h3>Materías</h3>
             <ul>
@@ -88,7 +92,7 @@ const subespecializs = computed(() => {
             </ul>
         </div>
 
-        <!-- Especicalizacion  ------------------------------------->
+        <!-- Sub Especicalizacion  --------------------------------->
         <div class="subespecializ">
             <h3>Sub Especialización</h3>
             <ul>

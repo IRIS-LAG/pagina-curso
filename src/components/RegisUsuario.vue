@@ -1,41 +1,54 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
-// 1. DEFINIR PROPS Y EMITS (El "contrato" del componente)
-// El componente no se muestra por sí mismo, el padre lo decide con la prop 'show'.
-defineProps<{
-    show: boolean;
-    
-}>();
-
-// El componente notifica al padre cuando debe cerrarse o cuando el formulario se envía.
+import { ref, watch, onMounted, nextTick } from 'vue'
+// -------------------------recibe del padre
+const props = defineProps<{
+  show: boolean
+}>()
+// -------------------------envia al padre
 const emit = defineEmits<{
-    (e: 'close'): void;
-    (e: 'submit', payload: { username: string; email: string; password: string }): void;
+    (e: 'close'): void
+    (e: 'submit', payload: { email: string; username: string; password: string }): void
 }>();
-
-// 2. ESTADO LOCAL PARA EL FORMULARIO
-// 'refs' para vincular los datos de los inputs del formulario.
-const username = ref('');
-const email = ref('');
-const password = ref('');
-
-// 3. LÓGICA DE ENVÍO
+// -------------------------para vincular los datos de los inputs del formulario.
+const email = ref('')
+const username = ref('')
+const password = ref('')
+// -------------------------crear usuario
+watch(email, (newEmail) => {
+  const atIndex = newEmail.indexOf('@')
+  if (atIndex > 0) {
+    username.value = newEmail.slice(0, atIndex) // Extrae la parte izquierda del email
+  } else {
+    username.value = '' // Limpia el username si el email no es válido
+  }
+})
+// -------------------------LÓGICA DE ENVÍO
 const handleSubmit = () => {
     // Validación básica (en una app real usarías Vuelidate o Zod)
     if (!username.value || !email.value || !password.value) {
-        alert('Por favor, completa todos los campos.');
-        return;
+        alert('Por favor, completa todos los campos')
+        return
     }
-
-    // Emitimos el evento 'submit' con los datos del formulario.
-    // El componente padre se encargará de la lógica de registro (ej. llamar a una API).
     emit('submit', {
-        username: username.value,
         email: email.value,
+        username: username.value,
         password: password.value,
-    });
-};
+    })
+    email.value = ''
+    username.value = ''
+    password.value = ''
+}
+// -------------------------enfocar el campo email al abrir el modal
+//no esta funcionando
+const emailInput = ref<HTMLInputElement | null>(null)
+onMounted(() => {
+  nextTick(() => {
+    if (emailInput.value) {
+      emailInput.value.focus()
+      console.log('Input enfocado')
+    }
+  })
+})
 </script>
 
 <template>
@@ -52,13 +65,13 @@ const handleSubmit = () => {
           <form @submit.prevent="handleSubmit">
           
             <div class="form-group">
-              <label for="username">Nombre de Usuario</label>
-              <input type="text" id="username" v-model="username" placeholder="ej: juanperez" required />
+              <label for="email">Correo Electrónico</label>
+              <input type="email" id="email" v-model="email" placeholder="tu@correo.com" ref="emailInput" required/>
             </div>
 
             <div class="form-group">
-              <label for="email">Correo Electrónico</label>
-              <input type="email" id="email" v-model="email" placeholder="tu@correo.com" required />
+              <label for="username">Nombre de Usuario</label>
+              <input type="text" id="username" v-model="username" placeholder="ej: juanperez" required />
             </div>
 
             <div class="form-group">
@@ -66,7 +79,7 @@ const handleSubmit = () => {
               <input type="password" id="password" v-model="password" placeholder="Mínimo 8 caracteres" required />
             </div>
             
-            <button type="submit" class="submit-button">Regístrate</button>
+            <button type="submit" class="btn btnb">Regístrame</button>
             <br/>
           
           </form>
@@ -74,7 +87,6 @@ const handleSubmit = () => {
                 
         <footer class="modal-footer">
           <p>Al hacer click, aceptas los términos de uso.</p>  
-          <p>¿Ya tienes una cuenta? <a href="#">Ingresa aquí</a></p>
         </footer>
 
       </div>
@@ -83,7 +95,6 @@ const handleSubmit = () => {
 </template>
 
 <style scoped>
-/* 5. ESTILOS PARA EL MODAL Y LA SUPERPOSICIÓN */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -97,21 +108,25 @@ const handleSubmit = () => {
   z-index: 1000;
 }
 .modal-container {
-  background-color: var(--color3);
-  border-radius: 8px;
+  background-color: var(--color5);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+  border-radius: 10px;
   width: 90%;
   max-width: 480px;
   display: flex;
   flex-direction: column;
+
 }
 .modal-header {
+  background-color: var(--color2);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
-  margin-top: 10px;
+  padding: 1.2rem 1.5rem;
+  /*margin-top: 10px;*/
   border-bottom: 4px solid white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .modal-header h3 {
   margin: 0;
@@ -126,7 +141,7 @@ const handleSubmit = () => {
   font-size: 3.4rem;
   font-weight: 300;
   cursor: pointer;
-  color: #34383f;
+  color:white;
   height: 40px;
   margin-top: -35px;
   transition: color 0.2s;
@@ -154,53 +169,21 @@ const handleSubmit = () => {
   border-radius: 6px;
   font-size: 1.2rem;
 }
+/*
 .form-group input:focus {
   background-color: var(--color6-rgb);
 }
-  .submit-button {
-  width: 100%;
-  padding: 0.8rem;
-  border: none;
-  border-radius: 6px;
-  background-color: var(--color2);
-  color: white;
-  font-size: 1.3rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.submit-button:hover {
-  background-color: var(--color6);
-  color: black;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
-  font-weight: bold;
+  */
+.btnb {
+  font-size: 1.5rem;
+  margin-top: 20px;
 }
 .modal-footer {
-  background-color: var(--color4);
+  margin-top: 20px;
+  background-color: var(--color2);
+  color: white;
   text-align: center;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
-/*
-.modal-footer p {
-  margin: 0;
-  color: #4a5568;
-}
-
-.modal-footer a {
-  color: #4299e1;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-/* Estilos para la transición 
-.modal-fade-enter-active,
-.modal-fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-.modal-fade-enter-from,
-.modal-fade-leave-to {
-  opacity: 0;
-}
-*/
 </style>

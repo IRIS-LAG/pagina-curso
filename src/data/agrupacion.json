@@ -1,21 +1,21 @@
 {
     "areas": [
-    {   "id": 1, "nombre": "Educación"},
-    {   "id": 2, "nombre": "Tecnología"},
-    {   "id": 3, "nombre": "Finanzas"}
+    {   "id": 1, "nombre": "Educación" },
+    {   "id": 2, "nombre": "Tecnología" },
+    {   "id": 3, "nombre": "Finanzas" }
     ],
     
     "materias": [
-    {   "id": 1, "idmateria": 1, "nombre": "Matemáticas"},
-    {   "id": 1, "idmateria": 2, "nombre": "Lenguaje"},
-    {   "id": 1, "idmateria": 3, "nombre": "Historia"},
+    {   "id": 1, "idmateria": 1, "nombre": "Matemáticas" },
+    {   "id": 1, "idmateria": 2, "nombre": "Lenguaje" },
+    {   "id": 1, "idmateria": 3, "nombre": "Historia" },
     
-    {   "id": 2, "idmateria": 1, "nombre": "Programación"},
-    {   "id": 2, "idmateria": 2, "nombre": "Diseño"},
-    {   "id": 2, "idmateria": 3, "nombre": "Inteligencia Artificial"},
+    {   "id": 2, "idmateria": 1, "nombre": "Programación" },
+    {   "id": 2, "idmateria": 2, "nombre": "Diseño" },
+    {   "id": 2, "idmateria": 3, "nombre": "Inteligencia Artificial" },
 
-    {   "id": 3, "idmateria": 1, "nombre": "Finanzas 1"},
-    {   "id": 3, "idmateria": 2, "nombre": "Finanzas 2"}
+    {   "id": 3, "idmateria": 1, "nombre": "Finanzas 1" },
+    {   "id": 3, "idmateria": 2, "nombre": "Finanzas 2" }
     ],
 
     "especializ": [

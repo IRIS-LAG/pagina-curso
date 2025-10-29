@@ -9,7 +9,7 @@ import FooterP from './components/FooterP.vue'
 <template>
   
   <div class="app-container">
-  
+    <!--
     <header>
       <div class="wrapper">
         <nav>
@@ -19,7 +19,7 @@ import FooterP from './components/FooterP.vue'
         </nav>
       </div>
     </header>
-
+  -->
     <HeaderP />
     <div class="main-content">
       <RouterView />

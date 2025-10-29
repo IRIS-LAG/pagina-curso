@@ -3,57 +3,93 @@ import { ref, computed } from 'vue'
 import grupo from '../data/agrupacion.json'
 
 const areas = ref(grupo.areas)
+const materiasTodas = ref(grupo.materias)
+const especializTodas = ref(grupo.especializ)
+const subespecializTodas = ref(grupo.subEspecializ)
+const descripcion = ref(['','','',''])
 
-const areaSel = ref('Todos')
-const materiaSel = ref('Todos')
-const especializSel = ref('Todos')
-const subespecializSel = ref('Todos')
+const areaSel = ref<number | null>(null)
+const materiaSel = ref<number | null>(null)
+const especializSel = ref<number | null>(null) 
+const subespecializSel = ref<number | null>(null) //ref('Todos')
 
 const materias = computed(() => {
-    if (areaSel.value === 'Todos') 
-    {
-        materiaSel.value = 'Todos'
-        especializSel.value = 'Todos'
-        subespecializSel.value = 'Todos'
-        return [{ nombre: 'Todos' }]
+    if (areaSel.value === null) {
+        return [{idmateria: 0, nombre: 'Todos'}]
     }
-    const area = areas.value.find(a => a.nombre === areaSel.value)
-    return area?.materias ?? [{ nombre: 'Todos' }]
+    return materiasTodas.value.filter(m => m.id === areaSel.value)
+})
+const especializ = computed(() => {
+    if (areaSel.value === null || materiaSel.value === null) {
+        return [{especializ: 0, nombre: 'Todos'}]
+    }
+    return especializTodas.value.filter(
+        e => e.id === areaSel.value && 
+        e.idmateria === materiaSel.value
+    )
+})
+const subespecializ = computed(() => {
+    if (areaSel.value === null || materiaSel.value === null || especializSel.value === null) {
+        return [{subespecializ: 0, nombre: 'Todos'}]
+    }
+    return subespecializTodas.value.filter(
+        e => e.id === areaSel.value && 
+        e.idmateria === materiaSel.value &&
+        e.especializ === especializSel.value
+    )
 })
 
-
-
-
-const especializs = computed(() => {
-    if (materiaSel.value === 'Todos') 
-    {
-        especializSel.value = 'Todos'
-        subespecializSel.value = 'Todos'
-        return [{ nombre: 'Todos' }]
+const handleAreaClick = (areaId: number, descrip: string) => {
+    if (areaSel.value === areaId) {
+        areaSel.value = null
+        descripcion.value[0] = ''
+    } else {
+        areaSel.value = areaId
+        descripcion.value[0] = descrip
     }
-    /*
-    const materia = materias.value.find(m => m.nombre === materiaSel.value)
-    return materia?.especializ ?? [{ nombre: 'Todos' }]
-    */
-})
-/*
-const subespecializs = computed(() => {
-    if (especializSel.value === 'Todos') 
-    {
-        subespecializSel.value = 'Todos'
-        return [{ nombre: 'Todos' }]
+    materiaSel.value = null
+    especializSel.value = null
+    subespecializSel.value = null
+
+    console.log('Descripción actualizada:', descripcion.value[0])
+}
+const handleMateriaClick = (materiaId: number, descrip: string) => {
+    if (materiaSel.value === materiaId) {
+        materiaSel.value = null
+        descripcion.value[1] = ''
+    } else {
+        materiaSel.value = materiaId
+        descripcion.value[1] = descrip
     }
-    const espec = especializs.value.find(e => e.nombre === especializSel.value)
-    return espec?.subespecializ ?? [{ nombre: 'Todos' }]
-})
-*/
+    especializSel.value = null
+    subespecializSel.value = null
+}
+const handleEspecClick = (especializId: number, descrip: string) => {
+    if (especializSel.value === especializId) {
+        especializSel.value = null
+        descripcion.value[2] = ''
+    } else {
+        especializSel.value = especializId
+        descripcion.value[2] = descrip
+    }
+    subespecializSel.value = null
+}
+const handleSubEspClick = (subespecializId: number, descrip: string) => {
+    if (subespecializSel.value === subespecializId) {
+        subespecializSel.value = null
+        descripcion.value[3] = ''
+    } else {
+        subespecializSel.value = subespecializId
+        descripcion.value[3] = descrip
+    }
+}
 
 /*funcion de seleccionar item y desmarcar los otros del mismo grupo*/
-    function selectItem(event: Event) {
-        const items = document.querySelectorAll(`.item`);
-        items.forEach(item => item.classList.remove('active')); // Elimina la clase activa de todos los elementos
-        (event.target as HTMLElement).classList.add('active'); // Agrega la clase activa al elemento clicado
-    }
+function selectItem(event: Event, nivel: string) {
+    const items = document.querySelectorAll(`.item-${nivel}`);
+    items.forEach(item => item.classList.remove('active')); 
+    (event.target as HTMLElement).classList.add('active'); 
+}
 </script>
 
 <!--***********************************************************************************-->
@@ -63,8 +99,8 @@ const subespecializs = computed(() => {
         <div class="areas">
             <h3>Areas</h3>
             <ul>
-                <li class="item" v-for="area in areas" :key="area.id"
-                    @click="selectItem($event); areaSel = area.nombre">
+                <li class="item item-area" v-for="area in areas" :key="area.id"
+                    @click="handleAreaClick(area.id, area.nombre); selectItem($event, 'area')">
                     {{ area.nombre }}
                 </li>
             </ul>
@@ -74,8 +110,8 @@ const subespecializs = computed(() => {
         <div class="materias">
             <h3>Materías</h3>
             <ul>
-                <li class="item" v-for="materia in materias" :key="materia.nombre"
-                    @click="selectItem($event); materiaSel = materia.nombre">
+                <li class="item item-materia" v-for="materia in materias" :key="materia.idmateria"
+                    @click="handleMateriaClick(materia.idmateria, materia.nombre); selectItem($event, 'materia')">
                     {{ materia.nombre }}
                 </li>
             </ul>
@@ -85,9 +121,9 @@ const subespecializs = computed(() => {
         <div class="especializ">
             <h3>Especialización</h3>
             <ul>
-                <li class="item" v-for="especializ in especializs" :key="especializ.nombre"
-                    @click="selectItem($event); especializSel = especializ.nombre">
-                    {{ especializ.nombre }}
+                <li class="item item-espec" v-for="espec in especializ" :key="espec.especializ"
+                    @click="handleEspecClick(espec.especializ, espec.nombre); selectItem($event, 'espec')">
+                    {{ espec.nombre }}
                 </li>
             </ul>
         </div>
@@ -96,12 +132,13 @@ const subespecializs = computed(() => {
         <div class="subespecializ">
             <h3>Sub Especialización</h3>
             <ul>
-                <li class="item" @click="selectItem($event)">Todos</li>
+                <li class="item item-subesp" v-for="subespec in subespecializ" :key="subespec.subespecializ"
+                    @click="handleSubEspClick(subespec.subespecializ, subespec.nombre); selectItem($event, 'subesp')">
+                    {{ subespec.nombre }}
+                </li>
             </ul>
         </div>
-
     </div>
-
 </template>
 
 <style scoped>

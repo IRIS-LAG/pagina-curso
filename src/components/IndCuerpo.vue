@@ -1,7 +1,15 @@
 <script setup lang="ts">
 // 1. IMPORTAR COMPONENTE Y TIPOS
-import { ref } from 'vue';
-import CourseCard, { type Course } from './IndCuerpoCard.vue'; // Importamos el componente y su tipo
+import { ref } from 'vue'
+import CourseCard, { type Course } from './IndCuerpoCard.vue' 
+//import videOSG from '../data/videosCursos.json'
+import DetalleCur from './DetalleCurso.vue'
+
+// ------------para toda la carga del modal detalle del video
+const showModal = ref(false)
+const openModal = () => {showModal.value = true;}
+const closeModal = () => {showModal.value = false;}
+
 
 const courses = ref<Course[]>([
     {
@@ -66,9 +74,13 @@ const courses = ref<Course[]>([
                 v-for="course in courses"
                 :key="course.id"
                 :course="course"
+                @click="openModal"
             />
         </div>
     </div>
+
+    <DetalleCur :show="showModal" @close="closeModal"/>
+
 </template>
 
 <style scoped>

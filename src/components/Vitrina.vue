@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import videosVit from '../data/videosVitrina.json'
+import DetalleCur from './DetalleCurso.vue'
+
+
+// ------------para toda la carga del modal detalle del video
+const showModal = ref(false)
+const openModal = () => {showModal.value = true;}
+const closeModal = () => {showModal.value = false;}
 
 interface Video {
     index: number;
@@ -10,6 +17,7 @@ const videos = ref<Video[]>([])
 onMounted(() => {
     videos.value = videosVit.videitos
 })    
+
 // Función para reproducir el video al enfocar
 function playVideo(event: FocusEvent) {
     const video = (event.target as HTMLElement).querySelector('video') as HTMLVideoElement
@@ -24,6 +32,7 @@ function pauseVideo(event: FocusEvent) {
         video.pause()
     }
 }
+
 </script>
 
 <template>
@@ -34,12 +43,16 @@ function pauseVideo(event: FocusEvent) {
             tabindex="0" 
             @mouseenter="playVideo($event)"
             @mouseleave="pauseVideo($event)"
+            @click="openModal"
             >
             <video :src="video.urlv" width="80" muted></video>
             <p>Video__{{ video.index + 1 }}</p>
         </div>
     </section>
     </div>
+
+    <DetalleCur :show="showModal" @close="closeModal"/>
+
 </template>
 
 <style scoped>

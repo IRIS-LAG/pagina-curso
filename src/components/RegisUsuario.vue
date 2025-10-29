@@ -101,7 +101,7 @@ onMounted(() => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(36, 35, 35, 0.6);
+  background-color: rgba(36, 35, 35, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,8 +111,8 @@ onMounted(() => {
   background-color: var(--color5);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
   border-radius: 10px;
-  width: 90%;
-  max-width: 480px;
+  width: 100%;
+  max-width: 520px;
   display: flex;
   flex-direction: column;
 
@@ -150,7 +150,7 @@ onMounted(() => {
   color: var(--color6);
 }
 .modal-body {
-  padding: 1.5rem;
+  padding: 1.5rem 2.8rem;
 }
 .form-group {
   display: flex;

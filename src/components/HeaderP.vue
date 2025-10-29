@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import UserProfile from './UserProfile.vue'
 import RegUsuario from './RegisUsuario.vue'
+import ContenidoCarrito from './ContenidoCarrito.vue'
 import { ref, onMounted } from 'vue'
 
 // ------------para manejo del usuario en el header
@@ -45,6 +46,11 @@ const handleUserSubmit = (payload: { email: string; username: string;  password:
     // Aquí iría la lógica para manejar el nuevo usuario, como llamar a una API.
     
 }
+// ------------para toda la carga del modal de contenido del carrito
+const showModala = ref(false)
+const openModala = () => {showModala.value = true;}
+const closeModala = () => {showModala.value = false;}
+
 // ------------cargar usuario al iniciar la app
 onMounted(() => {
     cargarUsuario()
@@ -70,7 +76,7 @@ onMounted(() => {
                 <input id="query" class="input" type="search" placeholder="Buscar curso..." name="searchbar"/>
             </div>
         
-            <div class="cart"><!-- Icono de compra ------------------------------>
+            <div class="cart" @click="openModala"><!-- Icono de compra ------------------------------>
                 <img class="svg-imagen" src="../assets/iconos/carito.svg" alt="carrito" width="30" height="30"/>
                 <p class="numeroP">0</p>
             </div>
@@ -90,6 +96,7 @@ onMounted(() => {
     </header>
     
     <RegUsuario :show="showModal" @close="closeModal" @submit="handleUserSubmit" />
+    <ContenidoCarrito :show="showModala" @close="closeModala" />
     
     <!-- ********************************************************************************************* -->
     <!-- ********************************************************************************************* -->

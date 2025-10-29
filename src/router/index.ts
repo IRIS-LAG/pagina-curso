@@ -13,11 +13,11 @@ const routes : Array<RouteRecordRaw> = [
         name:'registros',
         component: () => import('../views/registros.vue')
     },
-    {
-        path:'/formulario',
-        name:'formulario',
-        component: () => import('../views/Formulario.vue')  
-    },
+    //{
+    //    path:'/formulario',
+    //    name:'formulario',
+    //    component: () => import('../views/Formulario.vue')  
+    //},
 ]
 
 const router = createRouter({

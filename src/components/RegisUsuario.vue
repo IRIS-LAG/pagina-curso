@@ -53,7 +53,7 @@ onMounted(() => {
 
 <template>
   <Transition name="modal-fade">
-    <div v-if="show" class="modal-overlay" @click.self="emit('close')">
+    <div v-if="props.show" class="modal-overlay" @click.self="emit('close')">
       <div class="modal-container">
 
         <header class="modal-header">

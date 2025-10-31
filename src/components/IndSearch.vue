@@ -97,7 +97,7 @@ function selectItem(event: Event, nivel: string) {
     <div class="search-panel">
         <!-- Areas ----------------------------------------------->
         <div class="areas">
-            <h3>Areas</h3>
+            <h4>Areas</h4>
             <ul>
                 <li class="item item-area" v-for="area in areas" :key="area.id"
                     @click="handleAreaClick(area.id, area.nombre); selectItem($event, 'area')">
@@ -108,7 +108,7 @@ function selectItem(event: Event, nivel: string) {
 
         <!-- Materias  -------------------------------------------->
         <div class="materias">
-            <h3>Materías</h3>
+            <h4>Materías</h4>
             <ul>
                 <li class="item item-materia" v-for="materia in materias" :key="materia.idmateria"
                     @click="handleMateriaClick(materia.idmateria, materia.nombre); selectItem($event, 'materia')">
@@ -119,7 +119,7 @@ function selectItem(event: Event, nivel: string) {
 
         <!-- Especicalizacion  ------------------------------------->
         <div class="especializ">
-            <h3>Especialización</h3>
+            <h4>Especialización</h4>
             <ul>
                 <li class="item item-espec" v-for="espec in especializ" :key="espec.especializ"
                     @click="handleEspecClick(espec.especializ, espec.nombre); selectItem($event, 'espec')">
@@ -130,7 +130,7 @@ function selectItem(event: Event, nivel: string) {
 
         <!-- Sub Especicalizacion  --------------------------------->
         <div class="subespecializ">
-            <h3>Sub Especialización</h3>
+            <h4>Sub Especialización</h4>
             <ul>
                 <li class="item item-subesp" v-for="subespec in subespecializ" :key="subespec.subespecializ"
                     @click="handleSubEspClick(subespec.subespecializ, subespec.nombre); selectItem($event, 'subesp')">
@@ -138,7 +138,14 @@ function selectItem(event: Event, nivel: string) {
                 </li>
             </ul>
         </div>
+        <div class="adicional">
+            <h4>Curso Deseado:</h4>
+            <input type="text">
+            <button>Enviar</button>
+        </div>
+    
     </div>
+    
 </template>
 
 <style scoped>
@@ -151,7 +158,7 @@ function selectItem(event: Event, nivel: string) {
         flex-direction: column;
         flex: 0 0 250px; /* Fija el ancho del panel de búsqueda */
     }
-    h3 {
+    h4 {
         margin: 0px;
         padding: 0px;
     }
@@ -168,6 +175,7 @@ function selectItem(event: Event, nivel: string) {
         border-radius: 8px;
         cursor: pointer;
         transition: background-color 0.2s ease;
+        font-size: 0.9rem;
     }
     .item:hover {
         /*border: none;*/

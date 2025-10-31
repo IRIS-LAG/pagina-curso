@@ -2,6 +2,7 @@
 import VitrinaV from '../components/Vitrina.vue'
 import IndSearch from '../components/IndSearch.vue'
 import IndCuerpo from '../components/IndCuerpo.vue'
+import Identifica from '../components/Identifica.vue'
 </script>
 
 <template>
@@ -14,6 +15,8 @@ import IndCuerpo from '../components/IndCuerpo.vue'
       <IndCuerpo />
     </div>
 
+    <Identifica />
+
 </div>
 </template>
 
@@ -22,7 +25,6 @@ import IndCuerpo from '../components/IndCuerpo.vue'
     flex: 1;
     margin: 0px;
     padding: 0px;
-
     display: flex;
     flex-direction: column;
     

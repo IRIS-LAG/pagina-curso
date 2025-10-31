@@ -50,8 +50,8 @@ const formatCurrency = (value: number) => {
       <p class="card-price">{{ formatCurrency(course.price) }}</p>
       
       <nav class="iconos-pie">
-        <a class="redsoc" target="_blank"><img src="../assets/iconos/carito.svg"  alt="Facebook"></a>
-        <a class="redsoc" target="_blank"><img src="../assets/iconos/instagram.svg" alt="Instagram"></a>
+        <a class="redsoc" target="_blank"><img src="../assets/iconos/carito.svg"  alt="carrito"></a>
+        <a class="redsoc" target="_blank"><img src="../assets/iconos/instagram.svg" alt="algo"></a>
       </nav>
 
     </div>
@@ -67,7 +67,7 @@ const formatCurrency = (value: number) => {
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    max-width: 300px; 
+    max-width: 280px; 
   }
   .course-card:hover {
     transform: translateY(-8px);
@@ -75,7 +75,7 @@ const formatCurrency = (value: number) => {
   }
   .card-image-container {
     width: 100%;
-    height: 180px; /* Altura fija para la imagen */
+    height: 150px; /* Altura fija para la imagen */
   }
   .card-image {
     width: 100%;
@@ -86,6 +86,7 @@ const formatCurrency = (value: number) => {
     margin: 0;
     padding: 0;
     color: var(--color1);
+    font-size: 1.1rem;
   }
   .card-content {
     padding: 0.5rem 1.2rem;
@@ -111,7 +112,7 @@ const formatCurrency = (value: number) => {
   }
   .card-price {
     background-color: var(--color5);
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: #2d3748;
     margin-top: auto; /* Empuja el precio al final de la tarjeta */

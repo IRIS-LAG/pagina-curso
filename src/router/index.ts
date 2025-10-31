@@ -9,15 +9,26 @@ const routes : Array<RouteRecordRaw> = [
         component: Home
     },
     {   
-        path:'/registros',
-        name:'registros',
-        component: () => import('../views/registros.vue')
+        path:'/usuarioDatos',
+        name:'usuarioDatos',
+        component: () => import('../views/datosUsuario.vue')
     },
-    //{
-    //    path:'/formulario',
-    //    name:'formulario',
-    //    component: () => import('../views/Formulario.vue')  
-    //},
+    //--------------------------------------------------***
+    {   
+        path:'/misCursos',
+        name:'misCursos',
+        component: () => import('../views/misCursos.vue')
+    },
+    {
+        path:'/miEstado',
+        name:'miEstado',
+        component: () => import('../views/miEstado.vue')  
+    },
+    {
+        path:'/administracion',
+        name:'administracion',
+        component: () => import('../views/administrac.vue')  
+    }
 ]
 
 const router = createRouter({

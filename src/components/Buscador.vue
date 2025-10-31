@@ -1,4 +1,9 @@
+
 <script setup lang="ts">
+//import { ref } from 'vue'
+//import cursosT from '../data/datosCursos.json'
+//const cursos = ref(cursosT.cursos)
+
 // -------------------------recibe del padre
 const props = defineProps<{
     show: boolean
@@ -6,7 +11,8 @@ const props = defineProps<{
 // -------------------------envia al padre
 const emit = defineEmits<{
     (e: 'close'): void
-}>();
+}>()
+
 </script>
 
 <template>
@@ -15,16 +21,15 @@ const emit = defineEmits<{
             <div class="modal-container">
                 
                 <header class="modal-header">
-                    <h3>Contenido del Carrito</h3>
+                    <h3>Buscador</h3>
                     <button class="close-button" @click="emit('close')">&times;</button>
                 </header>
 
                 <div class="modal-body">
                     <ul>
-                        <li>Lista de cursos seleccionados</li>
-                        <li>Costo total</li>
-                        <li>Detalles</li>
-                        <li>Preparar cobro</li>
+                        <li>casilla para ingresar palabras</li>
+                        <li>lista de cursos encontrados</li>
+                        <li>boton para ir al curso</li>
                     </ul>
                 </div>
             
@@ -51,7 +56,6 @@ const emit = defineEmits<{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
     border-radius: 10px;
     width: 100%;
-    height: 80%;
     max-width: 620px;
     display: flex;
     flex-direction: column;
@@ -61,7 +65,7 @@ const emit = defineEmits<{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 1.5rem;
+    padding: 1.2rem 1rem;
     /*margin-top: 10px;*/
     border-bottom: 4px solid white;
     border-top-left-radius: 10px;
@@ -69,7 +73,7 @@ const emit = defineEmits<{
 }
 .modal-header h3 {
     margin: 0;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: white;
     width: 100%;
     text-align: center;
@@ -77,7 +81,7 @@ const emit = defineEmits<{
 .close-button {
     border: none;
     background: none;
-    font-size: 3.4rem;
+    font-size: 3.2rem;
     font-weight: 300;
     cursor: pointer;
     color:white;
@@ -91,7 +95,4 @@ const emit = defineEmits<{
 .modal-body {
     padding: 1.5rem 2.8rem;
 }
-
-
-
 </style>

@@ -54,6 +54,7 @@ onMounted(() => {
 <template>
   <Transition name="modal-fade">
     <div v-if="props.show" class="modal-overlay" @click.self="emit('close')">
+      
       <div class="modal-container">
 
         <header class="modal-header">
@@ -122,7 +123,7 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 1.5rem;
+  padding: 1.2rem 1rem;
   /*margin-top: 10px;*/
   border-bottom: 4px solid white;
   border-top-left-radius: 10px;
@@ -130,7 +131,7 @@ onMounted(() => {
 }
 .modal-header h3 {
   margin: 0;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: white;
   width: 100%;
   text-align: center;
@@ -138,7 +139,7 @@ onMounted(() => {
 .close-button {
   border: none;
   background: none;
-  font-size: 3.4rem;
+  font-size: 3.2rem;
   font-weight: 300;
   cursor: pointer;
   color:white;
@@ -157,7 +158,7 @@ onMounted(() => {
   flex-direction: column;
   margin-bottom: 1rem;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: black
 }
 .form-group input {
@@ -167,7 +168,7 @@ onMounted(() => {
   border: 1px solid var(--color2);
   outline: none;
   border-radius: 6px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 /*
 .form-group input:focus {
@@ -175,7 +176,7 @@ onMounted(() => {
 }
   */
 .btnb {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-top: 20px;
 }
 .modal-footer {

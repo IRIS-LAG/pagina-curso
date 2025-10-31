@@ -64,7 +64,7 @@ onClickOutside(userProfileComponent, () => {
     <Transition name="fade">
       <div v-if="isDropdownOpen" class="dropdown-menu">
         <ul>
-          <li><a href="/mis datos">Mi Perfil</a></li>
+          <RouterLink to="/usuarioDatos" class="drop-link">Mi Perfil</RouterLink>
           <li class="separator"></li>
           <RouterLink to="/" class="drop-link" @click="CerrarSesion">Cerrar Sesión</RouterLink>
         </ul>
@@ -92,8 +92,8 @@ onClickOutside(userProfileComponent, () => {
   color: white;
 }
 .avatar-container {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden; 
   background-color: var(--color3);
@@ -109,7 +109,7 @@ onClickOutside(userProfileComponent, () => {
 }
 .avatar-initials {
   color: white;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -126,8 +126,9 @@ onClickOutside(userProfileComponent, () => {
 /* Menú desplegable */
 .dropdown-menu {
   position: absolute;
+  text-align: center;
   /*top: calc(100% + 100px); */
-  top: 120px;
+  top: 80px;
   right: 30px;
   background-color: var(--color3);
   border: 1px solid var(--color1);

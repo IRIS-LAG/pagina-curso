@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LanguageServiceMode } from 'typescript';
+//import { LanguageServiceMode } from 'typescript';
 
 //import { ref } from 'vue'
 //import cursosT from '../data/datosCursos.json'

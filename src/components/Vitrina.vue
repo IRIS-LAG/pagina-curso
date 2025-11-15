@@ -28,13 +28,13 @@ function pauseVideo(event: FocusEvent) {
     }
 }
 
-const videoExpandido = ref(null)
-const toggleExpandir = (index, event) => {
+const videoExpandido = ref<number | null>(null)
+const toggleExpandir = (index: number, event: Event) => {
     if (videoExpandido.value === index) {
         videoExpandido.value = null
     } else {
         videoExpandido.value = index
-        const video = event.currentTarget.querySelector('video')
+        const video = (event.currentTarget as HTMLElement).querySelector('video')
         if (video) {
         video.play()
         }

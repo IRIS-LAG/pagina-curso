@@ -75,7 +75,7 @@ const verCurso = (curso: Curso) => {
                     <div v-if="!buscando && busquedaRealizada && cursosEncontrados.length === 0" class="sin-resultados">
                         <p>No se encontraron cursos para "{{ textoBusqueda }}"</p>
                     </div>
-                    <!------------------------------- Resultados -->
+                    <!-- ----------------------------- Resultados -->
                     <div v-if="cursosEncontrados.length > 0" class="resultados" title="Para VER, Click">
                         <p class="contador-resultados">
                             Se encontraron {{ cursosEncontrados.length }} curso(s)

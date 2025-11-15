@@ -52,103 +52,51 @@ onMounted(() => {
 </script>
 
 <template>
-  <Transition name="modal-fade">
-    <div v-if="props.show" class="modal-overlay" @click.self="emit('close')">
+<Transition name="modal-fade">
+  <div v-if="props.show" class="modal-overlay" @click.self="emit('close')">
       
-      <div class="modal-container">
+    <div class="modal-container">
 
-        <header class="modal-header">
-          <h3>Registro de Usuario</h3>
-          <button class="close-button" @click="emit('close')">&times;</button>
-        </header>
+      <header class="modal-header">
+        <h3>Registro de Usuario</h3>
+        <button class="close-button" @click="emit('close')">&times;</button>
+      </header>
 
-        <main class="modal-body">
-          <form @submit.prevent="handleSubmit">
+      <main class="modal-body">
+        <form @submit.prevent="handleSubmit">
           
-            <div class="form-group">
-              <label for="email">Correo Electrónico</label>
-              <input type="email" id="email" v-model="email" placeholder="tu@correo.com" ref="emailInput" required/>
-            </div>
+          <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" v-model="email" placeholder="tu@correo.com" ref="emailInput" required/>
+          </div>
 
-            <div class="form-group">
-              <label for="username">Nombre de Usuario</label>
-              <input type="text" id="username" v-model="username" placeholder="ej: juanperez" required />
-            </div>
+          <div class="form-group">
+            <label for="username">Nombre de Usuario</label>
+            <input type="text" id="username" v-model="username" placeholder="ej: juanperez" required />
+          </div>
 
-            <div class="form-group">
-              <label for="password">Contraseña</label>
-              <input type="password" id="password" v-model="password" placeholder="Mínimo 8 caracteres" required />
-            </div>
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" v-model="password" placeholder="Mínimo 8 caracteres" required />
+          </div>
             
-            <button type="submit" class="btn btnb">Regístrame</button>
-            <br/>
-          
-          </form>
-        </main>
-                
-        <footer class="modal-footer">
-          <p>Al hacer click, aceptas los términos de uso.</p>  
-        </footer>
+          <button type="submit" class="btn">Regístrame</button>
 
-      </div>
+        </form>
+      </main>
+                
+      <footer class="modal-footer">
+        <p>Al hacer click, aceptas los términos de uso.</p>  
+      </footer>
+
     </div>
-  </Transition>
+  </div>
+</Transition>
 </template>
 
 <style scoped>
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(36, 35, 35, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
 .modal-container {
-  background-color: var(--color5);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
-  border-radius: 10px;
-  width: 100%;
   max-width: 520px;
-  display: flex;
-  flex-direction: column;
-
-}
-.modal-header {
-  background-color: var(--color2);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 1rem;
-  /*margin-top: 10px;*/
-  border-bottom: 4px solid white;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-.modal-header h3 {
-  margin: 0;
-  font-size: 1.4rem;
-  color: white;
-  width: 100%;
-  text-align: center;
-}
-.close-button {
-  border: none;
-  background: none;
-  font-size: 3.2rem;
-  font-weight: 300;
-  cursor: pointer;
-  color:white;
-  height: 40px;
-  margin-top: -35px;
-  transition: color 0.2s;
-}
-.close-button:hover {
-  color: var(--color6);
 }
 .modal-body {
   padding: 1.5rem 2.8rem;
@@ -156,27 +104,23 @@ onMounted(() => {
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: black
+  margin-bottom: 10px;
 }
 .form-group input {
-  /*width: 100%;*/
-  padding: 0.75rem;
-  margin-top: 0.65rem;
-  border: 1px solid var(--color2);
-  outline: none;
-  border-radius: 6px;
-  font-size: 1.1rem;
+  padding: 6px;
+  border: 1px solid var(--color3);
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-top: 5px;
 }
-/*
 .form-group input:focus {
-  background-color: var(--color6-rgb);
+  outline: none;
+  border: 2px solid var(--color2);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  
 }
-  */
-.btnb {
-  font-size: 1.3rem;
+.btn {
+  font-size: 1.2rem;
   margin-top: 20px;
 }
 .modal-footer {

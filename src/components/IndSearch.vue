@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import grupo from '../data/agrupacion.json'
+import sugerencia from './Sugerencia.vue'
 
 const areas = ref(grupo.areas)
 const materiasTodas = ref(grupo.materias)
@@ -83,13 +84,16 @@ const handleSubEspClick = (subespecializId: number, descrip: string) => {
         descripcion.value[3] = descrip
     }
 }
-
 /*funcion de seleccionar item y desmarcar los otros del mismo grupo*/
 function selectItem(event: Event, nivel: string) {
     const items = document.querySelectorAll(`.item-${nivel}`);
     items.forEach(item => item.classList.remove('active')); 
     (event.target as HTMLElement).classList.add('active'); 
 }
+//-----------------------------para la carga pantalla sugerencias
+const showModal = ref(false)
+const openModal = () => {showModal.value = true;}
+const closeModal = () => {showModal.value = false;}
 </script>
 
 <!--***********************************************************************************-->
@@ -138,14 +142,16 @@ function selectItem(event: Event, nivel: string) {
                 </li>
             </ul>
         </div>
+
+        <!-- Sugerencias  ------------------------------------------>
         <div class="adicional">
-            <h4>Curso Deseado:</h4>
-            <input type="text">
-            <button>Enviar</button>
+            <button class="btn" @click="openModal">Curso Deseado</button>
         </div>
     
     </div>
     
+    <sugerencia :show="showModal" @close="closeModal" />
+
 </template>
 
 <style scoped>
@@ -185,5 +191,9 @@ function selectItem(event: Event, nivel: string) {
     .item.active {
         color: white;    
         background-color: var(--color1);
+    }
+    .adicional {
+        border-top: 2px solid var(--color2);
+        padding: 20px;
     }
 </style>

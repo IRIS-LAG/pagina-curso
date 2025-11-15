@@ -15,6 +15,10 @@
   --color6-rgb: rgba(240, 149, 64, 0.95);
   /*--color7: filter del color 6*/
   --color7: brightness(0) saturate(100%) invert(82%) sepia(65%) saturate(4606%) hue-rotate(332deg) brightness(100%) contrast(89%);
+  /*--color8: filter del color 1*/
+  --color8: brightness(0) saturate(100%) invert(16%) sepia(31%) saturate(2617%) hue-rotate(155deg) brightness(98%) contrast(103%);
+  /*--color9: filter del color 2*/
+  --color9: brightness(0) saturate(100%) invert(19%) sepia(60%) saturate(2156%) hue-rotate(158deg) brightness(95%) contrast(94%);
 
   background-color: var(--color1);
 
@@ -28,7 +32,7 @@ body {
   margin: 0px;
   padding: 0px;
 }
-.btn {
+.btn {/*boton de accion que cambia a naranja*/
   width: 100%;
   padding: 10px 20px;
   border: none;
@@ -45,4 +49,55 @@ body {
   color: black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
   font-weight: bold;
+}
+.modal-overlay {/*fondo transparente oscuro de pantallas emergentes*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(36, 35, 35, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+/*------------pantalla emergente-------------*/
+.modal-container {/*entorno gral*/
+    background-color: var(--color5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    border-radius: 10px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+.modal-header {/*cabecera*/
+    background-color: var(--color2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0.5rem 0.4rem 1.2rem;
+    border-bottom: 3px solid white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.modal-header h3 {/*titulo*/
+    margin: 0;
+    font-size: 1.3rem;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+.close-button {/*boton X*/
+    border: none;
+    background: none;
+    font-size: 3rem;
+    cursor: pointer;
+    color:white;
+    height: 40px;
+    margin-top: -38px;
+    transition: color 0.2s;
+}
+.close-button:hover {
+    color: var(--color6);
 }

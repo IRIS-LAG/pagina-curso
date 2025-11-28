@@ -8,9 +8,10 @@ import { RouterLink } from 'vue-router'
         <nav>
             <!--<a class="home"><img src="../assets/iconos/home.svg"  alt="home"></a>-->
             <RouterLink class="links" to="/">Inicio</RouterLink>
-            <RouterLink class="links" to="/misCursos">Mis Cursos</RouterLink>
-            <RouterLink class="links" to="/miEstado">Mi Estado</RouterLink>
+            <RouterLink class="links" :to="{ name: 'misCursos' }">Mis Cursos</RouterLink>
+            <RouterLink class="links" :to="{ name: 'miEstado' }">Mi Estado</RouterLink>
             <RouterLink class="links" to="/administracion">Administración</RouterLink>
+            <!--usando name puedo mover la ubicacion original sin afectar a todo-->
         </nav>
     </div>
 </template>

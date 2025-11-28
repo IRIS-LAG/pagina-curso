@@ -19,6 +19,9 @@
   --color8: brightness(0) saturate(100%) invert(16%) sepia(31%) saturate(2617%) hue-rotate(155deg) brightness(98%) contrast(103%);
   /*--color9: filter del color 2*/
   --color9: brightness(0) saturate(100%) invert(19%) sepia(60%) saturate(2156%) hue-rotate(158deg) brightness(95%) contrast(94%);
+  /*--color10: blanco*/
+  --color10: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(226deg) brightness(104%) contrast(101%);
+  --color11: #4CAF50;
 
   background-color: var(--color1);
 

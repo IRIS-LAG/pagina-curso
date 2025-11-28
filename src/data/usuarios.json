@@ -1,0 +1,7 @@
+{
+"usuarios": [
+    { "id": 1, "nombre": "Juan Pérez",   "email": "xxx", "contraseña": "aaa", "tipo": "ADMIN" },
+    { "id": 2, "nombre": "María García", "email": "yyy", "contraseña": "bbb", "tipo": "Profesor" },
+    { "id": 3, "nombre": "Carlos López", "email": "zzz", "contraseña": "ccc", "tipo": "Alumno" }
+]
+}

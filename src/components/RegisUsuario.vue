@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, nextTick } from 'vue'
+import { ref, watch } from 'vue'
 // -------------------------recibe del padre
 const props = defineProps<{
   show: boolean
@@ -7,9 +7,10 @@ const props = defineProps<{
 // -------------------------envia al padre
 const emit = defineEmits<{
     (e: 'close'): void
-    (e: 'submit', payload: { email: string; username: string; password: string }): void
+    (e: 'submit', payload: { email: string; username: string; password: string; tipoUsu: number }): void
 }>();
 // -------------------------para vincular los datos de los inputs del formulario.
+const csRegistro = ref(false)
 const email = ref('')
 const username = ref('')
 const password = ref('')
@@ -25,30 +26,33 @@ watch(email, (newEmail) => {
 // -------------------------LÓGICA DE ENVÍO
 const handleSubmit = () => {
     // Validación básica (en una app real usarías Vuelidate o Zod)
-    if (!username.value || !email.value || !password.value) {
-        alert('Por favor, completa todos los campos')
-        return
+    // buscar el usaurio en la base de datos
+    
+    //const usuarioEncontrado = true 
+    if (!csRegistro.value) {
+        if (!email.value) {
+            alert('Por favor, ingresa tu correo electrónico')
+            return
+        }
+        username.value = "Bambino"
+        password.value = "bambam"
+    } else {
+        if (!username.value || !email.value || !password.value) {
+            alert('Por favor, completa todos los campos')
+            return
+        }
     }
     emit('submit', {
         email: email.value,
         username: username.value,
         password: password.value,
+        tipoUsu: 0,
     })
     email.value = ''
     username.value = ''
     password.value = ''
+    csRegistro.value = false
 }
-// -------------------------enfocar el campo email al abrir el modal
-//no esta funcionando
-const emailInput = ref<HTMLInputElement | null>(null)
-onMounted(() => {
-  nextTick(() => {
-    if (emailInput.value) {
-      emailInput.value.focus()
-      console.log('Input enfocado')
-    }
-  })
-})
 </script>
 
 <template>
@@ -58,7 +62,7 @@ onMounted(() => {
     <div class="modal-container">
 
       <header class="modal-header">
-        <h3>Registro de Usuario</h3>
+        <h3>Inicio de sesión</h3>
         <button class="close-button" @click="emit('close')">&times;</button>
       </header>
 
@@ -67,20 +71,27 @@ onMounted(() => {
           
           <div class="form-group">
             <label for="email">Correo Electrónico</label>
-            <input type="email" id="email" v-model="email" placeholder="tu@correo.com" ref="emailInput" required/>
+            <input type="email" id="email" v-model="email" placeholder="tuNombre@correo.com" ref="emailInput" required/>
           </div>
 
-          <div class="form-group">
-            <label for="username">Nombre de Usuario</label>
-            <input type="text" id="username" v-model="username" placeholder="ej: juanperez" required />
-          </div>
+          <div class="registro-compl" v-if="csRegistro">
+            <div class="form-group">
+              <label for="username">Nombre de Usuario</label>
+              <input type="text" id="username" v-model="username" placeholder="ej: tu Nombre" required />
+            </div>
 
-          <div class="form-group">
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" v-model="password" placeholder="Mínimo 8 caracteres" required />
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <input type="password" id="password" v-model="password" placeholder="Mínimo 8 caracteres" required />
+            </div>
           </div>
-            
-          <button type="submit" class="btn">Regístrame</button>
+          
+          <button type="submit" class="btn">Continuar</button>
+
+          <div class="verregistro">
+            <p>No tienes cuenta?</p>
+            <button type="button" class="btn breg" @click="csRegistro = !csRegistro">Registro</button>
+          </div>
 
         </form>
       </main>
@@ -123,12 +134,32 @@ onMounted(() => {
   font-size: 1.2rem;
   margin-top: 20px;
 }
-.modal-footer {
+.verregistro {
   margin-top: 20px;
+  margin-left: 200px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.verregistro p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: bolder;
+  color: var(--color2);
+}
+.breg {
+  margin: 0;
+  font-size: 0.9rem;
+  width: 100px;
+  height: 35px;
+  padding: 4px 8px;
+}
+.modal-footer {
+  margin-top: 10px;
   background-color: var(--color2);
   color: white;
   text-align: center;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 </style>

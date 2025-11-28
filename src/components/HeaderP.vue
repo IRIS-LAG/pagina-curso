@@ -7,6 +7,7 @@ import ContenidoCarrito from './ContenidoCarrito.vue'
 import RegisUsuario from './RegisUsuario.vue'
 import UserProfile from './UserProfile.vue'
 import MenuSaltos from '../components/MenuSaltos.vue'
+import avatar from '../assets/iconos/faceUsu.svg'
 
 //-----------------------------para manejo del usuario en el header
 const usuario = ref<UsuarioGeneral | null>(null)
@@ -30,11 +31,11 @@ const cerrarSesion = () => {
 const showModal = ref(false)
 const openModal = () => {showModal.value = true;}
 const closeModal = () => {showModal.value = false;}
-const handleUserSubmit = (payload: { email: string; username: string;  password: string }) => {
+const handleUserSubmit = (payload: { email: string; username: string;  password: string; tipoUsu: number }) => {
     const nuevoUsuario: UsuarioGeneral = {
         email: payload.email,
         name: payload.username,
-        avatarUrl: 'https://i.pravatar.cc/150?u=anagarcia' 
+        avatarUrl: avatar//'https://i.pravatar.cc/150?u=anagarcia' 
     }
     usuario.value = nuevoUsuario
     guardarUsuario(nuevoUsuario) //en memoria
@@ -82,7 +83,7 @@ onMounted(() => {
             </div>
 
             <div class="sesibutton" v-if = "!existeUsuario"><!-- Boton de sesión --->
-                <button class="btn" @click="openModal">Registrarse</button>
+                <button class="btn" @click="openModal">Iniciar sesión</button>
             </div>
 
             <div class="usuarioAct" v-if = "existeUsuario"><!-- icono/foto + nombreUsuario --->

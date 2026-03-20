@@ -65,8 +65,7 @@ onMounted(() => {
 <template>
     <header class="header">
         <div class="logo"><!-- Logo --------------------------------------------->
-            <img src="../assets/iconos/logo0.svg" alt="Logo" width="70" height="70"/>
-            <p class="nombreP">Aprende+</p>
+            <img class="logoIm" src="../assets/iconos/LogoApre3.png" alt="Logo" width="140" height="70"/>
         </div>
         
         <div class="varios">
@@ -113,9 +112,8 @@ onMounted(() => {
     padding: 5px 30px;
     border-bottom: 1px solid white;
 }
-.logo {
-    display: flex;
-    align-items: center;
+.logoIm, .logoIm:hover {
+    filter: none;
 }
 img {/*blanco*/
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(37deg) brightness(103%) contrast(102%); 

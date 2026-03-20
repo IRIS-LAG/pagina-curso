@@ -1,7 +1,8 @@
 {
 "usuarios": [
-    { "id": 1, "nombre": "Juan Pérez",   "email": "xxx", "contraseña": "aaa", "tipo": "ADMIN" },
-    { "id": 2, "nombre": "María García", "email": "yyy", "contraseña": "bbb", "tipo": "Profesor" },
-    { "id": 3, "nombre": "Carlos López", "email": "zzz", "contraseña": "ccc", "tipo": "Alumno" }
+    { "id": 1, "nombre": "Juan",   "apellido":"Pérez",    "email": "xxx@hot",  "password": "aaa", "tipo": "ADMIN",    "estado":0 },
+    { "id": 2, "nombre": "María",  "apellido":"García",   "email": "yyy@mail", "password": "bbb", "tipo": "Profesor", "estado":0 },
+    { "id": 3, "nombre": "Carlos", "apellido":"López",    "email": "zzz@hot",  "password": "ccc", "tipo": "Alumno",   "estado":0 },
+    { "id": 4, "nombre": "Martín", "apellido":"Zambrana", "email": "z23@hot3", "password": "ddd", "tipo": "Nuevo",    "estado":1 }
 ]
 }

@@ -85,5 +85,6 @@ h3 {
 }
 .cuerpoderecho {
     flex-grow: 1;
+    justify-items: center;
 }
 </style>

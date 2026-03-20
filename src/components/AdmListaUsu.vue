@@ -1,75 +1,63 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import usuariosT from '../data/usuarios.json'
+import AdmListaUsuNE from './AdmListaUsuNE.vue'
 
 interface Usuario {
-  id: number
-  nombre: string
-  email: string
-  contraseña: string
-  tipo: string
+    id: number
+    nombre: string
+    apellido: string
+    email: string
+    password: string
+    tipo: string
+    estado: number
 }
-const verNuevoUsu = ref(true)
 const usuarios = ref<Usuario[]>(usuariosT.usuarios)
-const nueUsu = ref<Usuario>({
-  id: 0,
-  nombre: '',
-  email: '',
-  contraseña: '',
-  tipo: ''
-})
+const textoBusqueda = ref('')
+const usuariosOrig = ref<Usuario[]>(usuariosT.usuarios)
 
-/*
-const mostrarModal = ref(false)
-const modoEdicion = ref(false)
-
-const abrirModal = (usuario = null) => {
-  mostrarModal.value = true
-  if (usuario) {
-    modoEdicion.value = true
-    formulario.value = { ...usuario }
-  } else {
-    modoEdicion.value = false
-    formulario.value = { id: null, nombre: '', sexo: '' }
-  }
-}
-
-const cerrarModal = () => {
-  mostrarModal.value = false
-  formulario.value = { id: null, nombre: '', sexo: '' }
-}
-
-const guardarUsuario = () => {
-  if (!formulario.value.nombre || !formulario.value.sexo) {
-    alert('Por favor completa todos los campos')
-    return
-  }
-
-  if (modoEdicion.value) {
-    const index = usuarios.value.findIndex(u => u.id === formulario.value.id)
-    if (index !== -1) {
-      usuarios.value[index] = { ...formulario.value }
+//-----------------------------para la carga pantalla edicion y nuevo usuario
+const showModal = ref(false)
+const usuarioSelecc = ref(0)
+const buscarUsuario = () => {
+    const texto = textoBusqueda.value.toLowerCase().trim()
+    
+    if (!texto) {
+        // Si el campo está vacío, muestra todos los usuarios
+        usuarios.value = usuariosOrig.value
+        return
     }
-  } else {
-    const nuevoId = usuarios.value.length > 0 
-      ? Math.max(...usuarios.value.map(u => u.id)) + 1 
-      : 1
-    usuarios.value.push({
-      id: nuevoId,
-      nombre: formulario.value.nombre,
-      sexo: formulario.value.sexo
-    })
-  }
-  cerrarModal()
+        // Filtra por nombre, apellido o email
+    usuarios.value = usuariosOrig.value.filter(u => 
+        u.nombre.toLowerCase().includes(texto) ||
+        u.apellido.toLowerCase().includes(texto) ||
+        u.email.toLowerCase().includes(texto)
+    )
 }
-
-const eliminarUsuario = (id) => {
-  if (confirm('¿Estás seguro de eliminar este usuario?')) {
-    usuarios.value = usuarios.value.filter(u => u.id !== id)
-  }
+const openModal = () => {
+    usuarioSelecc.value = 0;  
+    showModal.value = true;
 }
-*/
-
+const abrirModal = (usuario: Usuario) => {
+    usuarioSelecc.value = usuario.id
+    showModal.value = true
+}
+const closeModal = () => {showModal.value = false;}
+const guardarUsuario = (usuario: Usuario) => {
+    const index = usuarios.value.findIndex(u => u.id === usuario.id)
+    if (index !== -1) {
+        // Editar usuario existente
+        usuarios.value[index] = { ...usuario }
+    } else {
+        // Agregar nuevo usuario
+        usuarios.value.push(usuario)
+    }
+}
+const eliminarUsuario = (id: number) => {
+    if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+        usuarios.value = usuarios.value.filter(u => u.id !== id)
+    }
+}
 </script>
 
 <template>
@@ -88,69 +76,47 @@ const eliminarUsuario = (id) => {
                 </button>
             </div>
         </div>
-
         
-        <!-- Tabla de usuarios -->
+        <!-- Tabla de usuarios ---------------------->
         <table class="tabla-usuarios">
             <thead>
                 <tr>
                 <th class="w-10">
                     <div class="creanuevo">
-                        <button class="btn nuevo" @click="verNuevoUsu = !verNuevoUsu" title="Agregar nuevo usuario">+</button>
-                        Nro
+                        <button class="btn verde" @click="openModal" title="Agregar nuevo usuario">+</button>Nro
                     </div>
                 </th>
-                <th>Usuario</th>
-                <th>Email</th>
-                <th class="w-20">Contraseña</th>
-                <th class="w-20">Tipo</th>
-                <th>Acción</th>
+                <th class="w-20">Nombre</th>
+                <th class="w-20">Apellido</th>
+                <th class="w-30">Email</th>
+                <th>Tipo</th>
+                <th class="w-60">Acción</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Fila para agregar nuevo usuario -->
-                <tr v-show="verNuevoUsu">
-                <td class="acentro">#</td>
-                <td><input type="text"     id="nombre" v-model="nueUsu.nombre"     placeholder="Nombre del usuario"></td>
-                <td><input type="email"    id="email"  v-model="nueUsu.email"      placeholder="email"></td>
-                <td><input type="password" id="nombre" v-model="nueUsu.contraseña" placeholder="contraseña"></td>
-                <td><select id="tipo" v-model="nueUsu.tipo">
-                    <option value=""        >Seleccione...</option>
-                    <option value="admin"   >Administrador</option>
-                    <option value="profesor">Profesor</option>
-                    <option value="alumno"  >Alumno</option>
-                    </select>
-                </td>
-                <td class="acciones">
-                    <button class="btn guardar" title="Guardar">Guardar</button>
-                </td>
-                </tr>
-
                 <!-- Filas de usuarios existentes -->
                 <tr v-for="(usuario, index) in usuarios" :key="usuario.id">
                 <td class="acentro">{{ index + 1 }}</td>
                 <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.apellido }}</td>
                 <td>{{ usuario.email }}</td>
-                <td class="acentro">{{ usuario.contraseña }}</td>
                 <td class="acentro">{{ usuario.tipo }}</td>
-                <td class="acciones acentro">
-                    <button @click="abrirModal(usuario)"         class="btn editar"   title="Editar">E</button>
-                    <button @click="eliminarUsuario(usuario.id)" class="btn eliminar" title="Eliminar">B</button>
-                    <!--
-                    <button @click="guardarUsuario(usuario.id)" class="btn guardar" title="Guardar">Guardar</button>
-                    <button @click="guardarUsuario(usuario.id)" class="btn editar" title="Guardar">SI</button>
-                    <button @click="guardarUsuario(usuario.id)" class="btn editar" title="Guardar">NO</button>
-                    -->
-                  </td>
+                <td>
+                <div class="acciones">
+                    <button @click="abrirModal(usuario)"         class="btn verde" title="Editar">E</button>
+                    <button @click="eliminarUsuario(usuario.id)" class="btn verde" title="Eliminar">B</button>
+                </div>
+                </td>
                 </tr>
-                
-
                 <tr v-if="usuarios.length == 0">
                 <td colspan="6" class="sin-datos">No hay usuarios registrados</td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <AdmListaUsuNE :show="showModal" :elUsuario="usuarioSelecc" @close="closeModal" @save="guardarUsuario"/>
+
 </template>
 
 <style scoped>
@@ -160,6 +126,8 @@ const eliminarUsuario = (id) => {
     padding: 30px;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
 }
 .cabeza {
     display: flex;
@@ -173,39 +141,38 @@ h3 {
     padding: 0px;
 }
 .barra-busqueda {
-  display: flex;
-  gap: 10px;
-  /*background-color: yellow;*/
+    display: flex;
+    gap: 10px;
 }
 .barra-busqueda input {
-  font-size: 0.8rem;
-  padding-left: 10px;
-  border-radius: 6px;
-  border: none;
+    font-size: 0.8rem;
+    padding-left: 10px;
+    border-radius: 6px;
+    border: none;
 }
 .barra-busqueda input:focus {
-  outline: none;
+    outline: none;
 }
 .icono-bus {
-  width: 30px;
-  height: 30px;
-  filter: var(--color10);
+    width: 30px;
+    height: 30px;
+    filter: var(--color10);
 }
 .icono-bus:hover {
-  filter: var(--color7);
-  cursor: pointer;
+    filter: var(--color7);
+    cursor: pointer;
 }
 .btn-buscar {
-  background: none;
-  display: flex;
-  align-items: center;
-  border: solid 1px var(--color3);
-  border-radius: 4px;
-  cursor: pointer;
+    background: none;
+    display: flex;
+    align-items: center;
+    border: solid 1px var(--color3);
+    border-radius: 4px;
+    cursor: pointer;
 }
 .btn-buscar:hover {
-  transform: translateY(-4px);
-  transition: all 0.2s ease;
+    transform: translateY(-4px);
+    transition: all 0.2s ease;
 } 
 /*------------------------------------------------------------*/
 .tabla-usuarios {
@@ -224,6 +191,7 @@ h3 {
 .tabla-usuarios td {
     padding: 5px;
     border-bottom: 1px solid var(--color3);
+    height: 0px;
 }
 .acentro {
     text-align: center;
@@ -232,88 +200,36 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 7px;
 }
 .w-10 {
     width: 75px;
 }
 .w-20 {
+    width: 15%;
+}
+.w-30 {
+    width: 40%;
+}
+.w-60 {
     width: 120px;
 }
-.nuevo, .editar, .eliminar {/*boton nuevo*/
+.verde {/*boton nuevo/editar/borrar*/
     width: 30px;
     height: 30px;
     padding: 0;
+    margin: 0;
     font-size: 20px;
     background-color: var(--color11);
     border-radius: 35%;
     border: solid 1px black;
 }
-/*------------------------------------------------------------*/
 .acciones {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 .btn:hover {
-    background-color: var(--color6);
-}
-
-/*
-.btn {
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    margin-right: 10px;
-    margin-left: 10px;
-    border-radius: 40%;
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-align: center;
-}
-*/
-
-.guardar {
-  width: 80%;
-  height: 30px;
-  padding-top: 7px;
-  border-radius: 6px;
-  /*  
-  background-color: var(--color3);
-    font-size: 16px;
-    width: 100px;
-  */
-}
-/*------------------------------------------------------------*/
-input {
-    width: 100%;
-    font-size: 1rem;
-    padding: 5px;
-    padding-left: 8px;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 4px;
-}
-input:focus {
-    outline: none;
-    background-color: var(--color6);
-}
-select {
-    width: 100%;
-    font-size: 1rem;
-    padding: 4px;
-    padding-left: 8px;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 4px;
-}
-select:focus {
-    outline: none;
     background-color: var(--color6);
 }
 /*------------------------------------------------------------*/

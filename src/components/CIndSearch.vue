@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import grupo from '../data/agrupacion.json'
-import sugerencia from './Sugerencia.vue'
+import sugerencia from './CSugerencia.vue'
 
 const areas = ref(grupo.areas)
 const materiasTodas = ref(grupo.materias)

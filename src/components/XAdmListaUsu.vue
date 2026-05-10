@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import usuariosT from '../data/usuarios.json'
-import AdmListaUsuNE from './AdmListaUsuNE.vue'
+import AdmListaUsuNE from './XAdmListaUsuNE.vue'
 
 interface Usuario {
     id: number

@@ -1,0 +1,23 @@
+
+{
+  "cartItems": [
+    {
+      "id": 0,
+      "title": "Curso de Introducción a Video",
+      "description": "Acceso inmediato al contenido en video",
+      "imageUrl": "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
+      "price": 49.99,
+      "quantity": 1,
+      "urlv": "https://www.w3schools.com/html/mov_bbb.mp4"
+    },
+    {
+      "id": 1,
+      "title": "Curso Básico de Producción",
+      "description": "Video curso paso a paso",
+      "imageUrl": "https://images.pexels.com/photos/1983037/pexels-photo-1983037.jpeg",
+      "price": 35.00,
+      "quantity": 1,
+      "urlv": "https://samplelib.com/lib/preview/mp4/sample-5s.mp4"
+    }
+  ]
+}

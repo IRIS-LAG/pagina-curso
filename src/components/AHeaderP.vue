@@ -2,11 +2,11 @@
 import { ref, onMounted } from 'vue'
 import type { UsuarioGeneral } from '../data/Types.ts' 
 
-import Buscador from './Buscador.vue'
-import ContenidoCarrito from './ContenidoCarrito.vue'
-import RegisUsuario from './RegisUsuario.vue'
-import UserProfile from './UserProfile.vue'
-import MenuSaltos from '../components/MenuSaltos.vue'
+//import Buscador from './ABuscador.vue/index.ts'
+//import ContenidoCarrito from './ContenidoCarrito.vue/index.ts'
+//import RegisUsuario from './ARegisUsuario.vue/index.ts'
+//import UserProfile from './AUserProfile.vue/index.ts'
+//import MenuSaltos from './AMenuSaltos.vue/index.ts'
 import avatar from '../assets/iconos/faceUsu.svg'
 
 //-----------------------------para manejo del usuario en el header

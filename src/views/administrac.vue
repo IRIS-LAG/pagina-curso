@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ListaUsu from '../components/AdmListaUsu.vue'
-import ListaArea from '../components/AdmListaArea.vue'
+import ListaUsu from '../components/XAdmListaUsu.vue'
+import ListaArea from '../components/XAdmListaArea.vue'
 import { ref } from 'vue'
 //LISTA DE PANTALLAS DE CONFIGURACION
 const items = ref([

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import VitrinaV from '../components/Vitrina.vue'
-import IndSearch from '../components/IndSearch.vue'
-import IndCuerpo from '../components/IndCuerpo.vue'
-import Identifica from '../components/Identifica.vue'
+import VitrinaV from '../components/BVitrina.vue'
+import IndSearch from '../components/CIndSearch.vue'
+import IndCuerpo from '../components/DContCards.vue'
+import Identifica from '../components/YIdentifica.vue'
 </script>
 
 <template>

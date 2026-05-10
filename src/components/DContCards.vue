@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // 1. IMPORTAR COMPONENTE Y TIPOS
 import { ref } from 'vue'
-import CourseCard, { type Course } from './IndCuerpoCard.vue' 
+import CourseCard, { type Course } from './DDetallCard.vue' 
 import DetalleCurso from './DetalleCurso.vue'
 import cursosT from '../data/datosCursos.json'
 

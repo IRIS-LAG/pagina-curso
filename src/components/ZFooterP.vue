@@ -6,7 +6,7 @@
             <h2>Aprende +</h2>
         </div>
 
-        <div class="piecentro">Santa Cruz - Bolivia <br> © Copyright 2025</div>    
+        <div class="piecentro">Santa Cruz - Bolivia <br> © Copyright 2026</div>    
 
         <div class="piederecha">
             <nav class="menulogospie">

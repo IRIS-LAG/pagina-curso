@@ -1,17 +1,25 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import type { UsuarioGeneral } from '../data/Types.ts' 
+import AUserProfile from './AUserProfile.vue'
 
+//import avatar from '../assets/iconos/faceUsu.svg'
 //import Buscador from './ABuscador.vue/index.ts'
 //import ContenidoCarrito from './ContenidoCarrito.vue/index.ts'
 //import RegisUsuario from './ARegisUsuario.vue/index.ts'
 //import UserProfile from './AUserProfile.vue/index.ts'
 //import MenuSaltos from './AMenuSaltos.vue/index.ts'
-import avatar from '../assets/iconos/faceUsu.svg'
 
+//-----------------------------
+const nroItems = ref(5) //nro de items en el carrito
 //-----------------------------para manejo del usuario en el header
 const usuario = ref<UsuarioGeneral | null>(null)
 const existeUsuario = ref(false)
+
+
+
+
+
 const cargarUsuario = () => {
     const userData = localStorage.getItem('usuario')
     if (userData) {
@@ -64,29 +72,34 @@ onMounted(() => {
 </script>
 <template>
     <header class="header">
-        <div class="logo"><!-- Logo --------------------------------------------->
-            <img class="logoIm" src="../assets/iconos/LogoApre3.png" alt="Logo" width="140" height="70"/>
+        <!-- Logo --------------------------------------------->
+        <div class="logo">
+            <img class="logoIm" src="../assets/iconos/LogoApre3.png" alt="Logo" width="100" height="60" style="margin: 7px;"/>
         </div>
         
+        <!-- Buscar/carrito/iniciar sesion -------------------->
         <div class="varios">
-            <div class="buscador"><!-- Buscador ------------------------------------>
-                <button class="bot-buscar" @click="openModalb">
-                    <img class="lupa" src="../assets/iconos/magnifying.svg" alt="Buscar" width="30" height="30"/>
-                    <span>Buscar ...</span>
+            <div class="buscador">
+                <button class="btn bot-buscar" @click="openModalb">
+                    <span>Buscar</span>
+                    <i class="fa-solid fa-magnifying-glass" alt="Buscar"></i>
                 </button>
             </div>
 
-            <div class="cart" @click="openModala"><!-- Icono de compra ------------------------------>
-                <img class="svg-imagen" src="../assets/iconos/carito.svg" alt="carrito" width="30" height="30"/>
-                <p class="numeroP">0</p>
+            <!-- Icono de compra ------------------------------>
+            <div class="cart" @click="openModala">
+                <i class="fa-solid fa-cart-shopping" alt="carrito"></i>
+                <p>{{ nroItems }}</p>
             </div>
 
-            <div class="sesibutton" v-if = "!existeUsuario"><!-- Boton de sesión --->
+            <!-- Boton de sesión ------------------------------>
+            <div v-if = "!existeUsuario">
                 <button class="btn" @click="openModal">Iniciar sesión</button>
             </div>
 
-            <div class="usuarioAct" v-if = "existeUsuario"><!-- icono/foto + nombreUsuario --->
-                <UserProfile 
+            <!-- icono/foto + nombreUsuario ------------------->
+            <div v-if = "!existeUsuario">
+                <AUserProfile 
                     :username = "usuario?.name"
                     :avatarUrl = "usuario?.avatarUrl"
                     @cerrar = "cerrarSesion"
@@ -100,8 +113,8 @@ onMounted(() => {
     <RegisUsuario :show="showModal" @close="closeModal" @submit="handleUserSubmit" />
     <MenuSaltos v-if="existeUsuario"/>
     
-    <!-- ********************************************************************************************* -->
-    <!-- ********************************************************************************************* -->
+    <!-- ********************************************************************************** -->
+    <!-- ********************************************************************************** -->
 </template>
 <style scoped>
 .header {
@@ -109,69 +122,41 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 30px;
+    padding-left: 20px;
     border-bottom: 1px solid white;
-}
-.logoIm, .logoIm:hover {
-    filter: none;
-}
-img {/*blanco*/
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(37deg) brightness(103%) contrast(102%); 
-}
-img:hover {
-    filter: var(--color7);
-}
-.nombreP {
-    font-size: 1.5em;
-    color: white;
-    font-weight: bold;
-    margin-left: 10px;
-}
-.nombreP:hover{
-    filter: var(--color7);
 }
 .varios {
     display: flex;
     align-items: center;
     gap: 20px;
+    padding-right: 20px;
 }
 /* Buscador ------------------------------------------------------------- */
 .bot-buscar {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 6px 20px;
-    background: var(--color3);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
-.bot-buscar:hover {
-    background-color: var(--color6);
-    color: black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
-}
-.lupa:hover {
-    filter: brightness(0);
+.fa-magnifying-glass {
+    font-size: 1.3rem;
 }
 /* icono carrito -------------------------------------------------------- */
 .cart {
+    height: 38px;
     display: flex;
     align-items: center;
-    gap: 15px;
-    font-size: 1.2rem;
     color: white;
+    gap: 8px;
+    font-size: 1rem;
+    border-bottom: 2px solid white;
+    transition: transform 0.2s ease;
 }
-.svg-imagen:hover {
-    transform: translateY(-4px);
+.fa-cart-shopping{
+    font-size: 1.5rem;
+}
+.cart:hover {
+    color: var(--color6);
+    transform: scale(1.1);
     cursor: pointer;
-}
-/* Boton ---------------------------------------------------------------- */
-.ocultar {
-    display: none;
 }
 </style>

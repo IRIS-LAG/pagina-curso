@@ -8,10 +8,11 @@ const props = defineProps<{
 const emit = defineEmits<{
     (e: 'close'): void
 }>()
-
 const mensajeVis = ref(false)
 const mostrarMen = () => {
+
     //validar los campos antes de mostrar el mensaje
+
     mensajeVis.value = true
     setTimeout(() => {
         mensajeVis.value = false    
@@ -27,7 +28,9 @@ const mostrarMen = () => {
 
             <header class="modal-header">
                 <h3>Curso Deseado</h3>
-                <button class="close-button" @click="emit('close')">&times;</button>
+                <button class="close-button" @click="emit('close')">
+                    <i class="fa-solid fa-square-xmark" alt="cerrar"></i>
+                </button>
             </header>
 
             <div class="modal-body">
@@ -85,7 +88,7 @@ input {
 input:focus {
     outline: none;
     border: 2px solid var(--color2);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 .modal-pie {
     background-color: var(--color2);
@@ -98,7 +101,7 @@ input:focus {
     align-items: center;
 }   
 .btn {
-    width: 60%;
+    width: 90%;
 }
 .modal-pie h3 {
     color: white;

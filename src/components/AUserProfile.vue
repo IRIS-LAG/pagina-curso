@@ -44,11 +44,15 @@ onClickOutside(userProfileComponent, () => {
 </script>
 
 <template>
-  <div class="user-profile" @click="toggleDropdown" ref="userProfileComponent">
+    <div class="user-profile" @click="toggleDropdown" ref="userProfileComponent">
     
     <div class="avatar-container">
-      <img class="avatar-image"    v-if="avatarUrl" :src="avatarUrl" :alt="'Avatar de ' + username">
-      <div class="avatar-initials" v-else >
+        <i class="fa-solid fa-user-tie" :alt="'Avatar de ' + username"></i>
+      
+      
+      
+      
+      	<div class="avatar-initials" >
         <span>{{ userInitials }}</span>
       </div>
     </div>
